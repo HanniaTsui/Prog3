@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -9,11 +8,16 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 public class Ventana extends JFrame{
 
 	public Ventana() {
@@ -26,7 +30,7 @@ public class Ventana extends JFrame{
 		this.setMaximumSize(new Dimension (600,600));
 		this.setMinimumSize(new Dimension (250,250));
 		//ventana.setResizable(false);
-		this.setLayout(null);
+		this.setLayout(null); //Quitar el molde
 		
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.iniciarComponentes();
@@ -36,6 +40,188 @@ public class Ventana extends JFrame{
 	public void iniciarComponentes()
 	{
 		
+		this.admin();
+	//	this.login();
+	//	this.registro();
+		
+		this.repaint(); // repintar componentes.
+		
+	}
+	
+	public void admin()
+	{
+		//Añadir panel
+		JPanel adminPanel = new JPanel();
+		adminPanel.setSize(this.getWidth(), this.getHeight());
+		adminPanel.setLocation(0,0);
+		adminPanel.setBackground(new Color(123, 203, 204));
+		adminPanel.setLayout(null);
+		
+		//Añadir menu
+		JMenuBar barra = new JMenuBar();
+		JMenu menuFile = new JMenu("Archivo");
+		JMenuItem openItem = new JMenuItem("Abrir archivo");
+		JMenuItem crear = new JMenuItem("Crear archivo");
+		
+		JLabel adminUsuario = new JLabel("USUARIOS", JLabel.CENTER);
+		adminUsuario.setFont(new Font("Consolas", Font.BOLD, 30));
+		adminUsuario.setForeground(Color.white);
+		adminUsuario.setSize(450,40);
+		adminUsuario.setLocation(225,30); 
+		adminUsuario.setOpaque(true);
+		adminUsuario.setBackground(new Color(5, 98, 99));
+		adminPanel.add(adminUsuario);
+		
+		JLabel tituloWidget = new JLabel("Total de usuarios",0);
+		tituloWidget.setBounds(40,80,300,100);
+		tituloWidget.setFont(new Font("Consolas", Font.BOLD, 18));
+		tituloWidget.setForeground(Color.black);
+		adminPanel.add(tituloWidget);
+		
+		JLabel usuarios = new JLabel("100",0);
+		usuarios.setBounds(40,130,300,100);
+		usuarios.setFont(new Font("Rockwell", Font.BOLD, 40));
+		usuarios.setOpaque(true);
+		usuarios.setForeground(Color.black);
+		usuarios.setBackground(new Color(40, 139, 140));
+		adminPanel.add(usuarios);
+		
+		JLabel widget = new JLabel("");
+		widget.setBounds(40,100,300,100);
+		widget.setOpaque(true);
+		widget.setBackground(new Color(40, 139, 140));
+		adminPanel.add(widget);
+		
+	/*	JLabel tabla = new JLabel("");
+		tabla.setBounds(40,300,820,300);
+		tabla.setFont(new Font("Showcard Gothic", Font.BOLD, 40));
+		tabla.setOpaque(true);
+		tabla.setForeground(Color.black);
+		tabla.setBackground(new Color(40, 139, 140));
+		adminPanel.add(tabla);*/
+		
+		JButton download = new JButton("Exportar");
+		download.setBackground(new Color (20, 72, 73));
+		download.setFont(new Font("Consolas", Font.BOLD, 15));
+		download.setForeground(Color.WHITE);
+		download.setFocusable(false);
+		download.setBounds(620, 250, 100, 30);
+        adminPanel.add(download);
+        
+        JButton añadir = new JButton("Añadir");
+        añadir.setBackground(new Color (20, 72, 73));
+        añadir.setFont(new Font("Consolas", Font.BOLD, 15));
+        añadir.setForeground(Color.WHITE);
+        añadir.setFocusable(false); //Quitar cuadro a boton (al presionar no aparece)
+        añadir.setBounds(760, 250, 100, 30);
+        adminPanel.add(añadir);
+        
+		String titles[]= {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"};
+		
+		String data[][]={{"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"},
+						 {"No.Control", "Nombre", "Apellido", "Semestre", "Promedio", "Acciones"}};
+		JTable datosTabla = new JTable(data, titles);
+		JScrollPane tablaScroll = new JScrollPane(datosTabla);
+		tablaScroll.setBounds(40,300,820,200);
+		adminPanel.add(tablaScroll);
+		
+		barra.add(menuFile);
+		menuFile.add(openItem);
+		menuFile.add(crear);
+		
+		this.setJMenuBar(barra);
+		
+
+		this.add(adminPanel);
+	}
+	public void login()
+	{
+		JPanel login = new JPanel();
+		login.setSize(this.getWidth()/2, this.getHeight());
+		login.setBackground(new Color(205, 217, 237));
+		login.setLayout(null);
+		
+		JLabel loginTitulo = new JLabel("ACCEDER", JLabel.CENTER);
+		loginTitulo.setFont(new Font("Consolas", Font.BOLD, 20));
+		loginTitulo.setForeground(Color.white);
+		loginTitulo.setSize(450,30);
+		loginTitulo.setLocation(0,30); 
+		loginTitulo.setOpaque(true);
+		loginTitulo.setBackground(Color.blue);
+		login.add(loginTitulo);
+
+		JLabel nuevaCuenta = new JLabel ("¿No tienes cuenta? Registrate");
+		nuevaCuenta.setFont(new Font("Consolas", Font.BOLD, 12));
+		nuevaCuenta.setForeground(Color.black);
+		nuevaCuenta.setBounds(130,80,190,30);
+		login.add(nuevaCuenta);
+		
+		JLabel etiquetaNombre = new JLabel ("Nombre de usuario");
+		etiquetaNombre.setFont(new Font("Consolas", Font.BOLD, 18));
+		etiquetaNombre.setForeground(Color.black);
+		etiquetaNombre.setBounds(80,140,200,30); 
+		login.add(etiquetaNombre);
+		
+		JTextField nombreUsuario = new JTextField();
+		nombreUsuario.setFont(new Font("Consolas", Font.PLAIN, 16));
+		nombreUsuario.setForeground(Color.black);
+		nombreUsuario.setBounds(80, 170, 290, 30);
+		login.add(nombreUsuario);
+
+		JLabel etiquetaContraseña = new JLabel ("Contraseña");
+		etiquetaContraseña.setFont(new Font("Consolas", Font.BOLD, 18));
+		etiquetaContraseña.setForeground(Color.black);
+		etiquetaContraseña.setBounds(80,250,200,30); 
+		login.add(etiquetaContraseña);
+		
+		JPasswordField contraseñaUsuario = new JPasswordField();
+		contraseñaUsuario.setFont(new Font("Consolas", Font.PLAIN, 16));
+		contraseñaUsuario.setForeground(Color.black);
+		contraseñaUsuario.setBounds(80, 280, 290, 30);
+		login.add(contraseñaUsuario);
+		
+		JCheckBox loginRecordar = new JCheckBox("Recordarme");
+		loginRecordar.setFont(new Font("Consolas", Font.PLAIN, 12));
+		loginRecordar.setForeground(Color.black);
+		loginRecordar.setBounds(80,315,100,20);
+		loginRecordar.setOpaque(false);
+		login.add(loginRecordar);
+		
+		JLabel contraseñaOlvidada = new JLabel ("¿Olvidó su contraseña?");
+		contraseñaOlvidada.setFont(new Font("Consolas", Font.PLAIN, 11));
+		contraseñaOlvidada.setForeground(new Color(3, 48, 122));
+		contraseñaOlvidada.setBounds(230,310,400,30); 
+		login.add(contraseñaOlvidada);
+		
+		JButton loginAcceder = new JButton ("Acceder");
+		loginAcceder.setBackground(new Color (15,55,121));
+        loginAcceder.setFont(new Font("Consolas", Font.BOLD, 18));
+        loginAcceder.setForeground(Color.WHITE);
+        loginAcceder.setBounds(150, 420, 150, 50);
+        login.add(loginAcceder);
+        
+        this.add(login);
+		
+	}
+	
+	public void registro()
+	{
+
         //PANEL DERECHO
 		JPanel registro = new JPanel(); // Agregar otro panel
 		registro.setSize(this.getWidth()/2, this.getHeight());
@@ -158,84 +344,11 @@ public class Ventana extends JFrame{
 		registroAceptar.setFont(new Font("Consolas", Font.BOLD, 18));
         registroAceptar.setForeground(Color.WHITE);
         registroAceptar.setBounds(150, 600, 150, 50);
-        registroAceptar.setBorderPainted(true);
+        registroAceptar.setBorderPainted(true); //Agregar borde
         registroAceptar.setBorder(BorderFactory.createLineBorder(new Color(8, 36, 81), 5));
         registro.add(registroAceptar);
-		
-		this.login();
-		this.add(registro);
-		
-
-	}
-	
-	public void login()
-	{
-		JPanel login = new JPanel();
-		login.setSize(this.getWidth()/2, this.getHeight());
-		login.setBackground(new Color(205, 217, 237));
-		login.setLayout(null);
-		
-		JLabel loginTitulo = new JLabel("ACCEDER", JLabel.CENTER);
-		loginTitulo.setFont(new Font("Consolas", Font.BOLD, 20));
-		loginTitulo.setForeground(Color.white);
-		loginTitulo.setSize(450,30);
-		loginTitulo.setLocation(0,30); 
-		loginTitulo.setOpaque(true);
-		loginTitulo.setBackground(Color.blue);
-		login.add(loginTitulo);
-
-		JLabel nuevaCuenta = new JLabel ("¿No tienes cuenta? Registrate");
-		nuevaCuenta.setFont(new Font("Consolas", Font.BOLD, 12));
-		nuevaCuenta.setForeground(Color.black);
-		nuevaCuenta.setBounds(130,80,190,30);
-		login.add(nuevaCuenta);
-		
-		JLabel etiquetaNombre = new JLabel ("Nombre de usuario");
-		etiquetaNombre.setFont(new Font("Consolas", Font.BOLD, 18));
-		etiquetaNombre.setForeground(Color.black);
-		etiquetaNombre.setBounds(80,140,200,30); 
-		login.add(etiquetaNombre);
-		
-		JTextField nombreUsuario = new JTextField();
-		nombreUsuario.setFont(new Font("Consolas", Font.PLAIN, 16));
-		nombreUsuario.setForeground(Color.black);
-		nombreUsuario.setBounds(80, 170, 290, 30);
-		login.add(nombreUsuario);
-
-		JLabel etiquetaContraseña = new JLabel ("Contraseña");
-		etiquetaContraseña.setFont(new Font("Consolas", Font.BOLD, 18));
-		etiquetaContraseña.setForeground(Color.black);
-		etiquetaContraseña.setBounds(80,250,200,30); 
-		login.add(etiquetaContraseña);
-		
-		JPasswordField contraseñaUsuario = new JPasswordField();
-		contraseñaUsuario.setFont(new Font("Consolas", Font.PLAIN, 16));
-		contraseñaUsuario.setForeground(Color.black);
-		contraseñaUsuario.setBounds(80, 280, 290, 30);
-		login.add(contraseñaUsuario);
-		
-		JCheckBox loginRecordar = new JCheckBox("Recordarme");
-		loginRecordar.setFont(new Font("Consolas", Font.PLAIN, 12));
-		loginRecordar.setForeground(Color.black);
-		loginRecordar.setBounds(80,315,100,20);
-		loginRecordar.setOpaque(false);
-		login.add(loginRecordar);
-		
-		JLabel contraseñaOlvidada = new JLabel ("¿Olvidó su contraseña?");
-		contraseñaOlvidada.setFont(new Font("Consolas", Font.PLAIN, 11));
-		contraseñaOlvidada.setForeground(new Color(3, 48, 122));
-		contraseñaOlvidada.setBounds(230,310,400,30); 
-		login.add(contraseñaOlvidada);
-		
-		JButton loginAcceder = new JButton ("Acceder");
-		loginAcceder.setBackground(new Color (15,55,121));
-        loginAcceder.setFont(new Font("Consolas", Font.BOLD, 18));
-        loginAcceder.setForeground(Color.WHITE);
-        loginAcceder.setBounds(150, 420, 150, 50);
-        login.add(loginAcceder);
         
-        this.add(login);
-		
+        this.add(registro);
 	}
 
 }
