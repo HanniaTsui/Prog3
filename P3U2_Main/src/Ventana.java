@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 public class Ventana extends JFrame{
@@ -23,13 +24,15 @@ public class Ventana extends JFrame{
 	public Ventana() {
 		// TODO Auto-generated constructor stub
 		
-		this.setTitle("Mi ventana");
-		this.setSize(900,760);
+		//this.setTitle("Mi ventana");
+		//this.setSize(900,760);
+		this.setTitle("Calculadora"); // Calculadora
+		this.setSize(420,680); 		  // Calculadora
 		this.setLocation(120,120);
 		this.setLocationRelativeTo(null);
 		this.setMaximumSize(new Dimension (600,600));
 		this.setMinimumSize(new Dimension (250,250));
-		//ventana.setResizable(false);
+		//this.setResizable(false);
 		this.setLayout(null); //Quitar el molde
 		
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,13 +42,154 @@ public class Ventana extends JFrame{
 	
 	public void iniciarComponentes()
 	{
-		
-		this.admin();
+		this.calculadora();
+	//	this.admin();
 	//	this.login();
 	//	this.registro();
+
+	//	this.repaint(); // repintar componentes.
 		
-		this.repaint(); // repintar componentes.
+	}
+	
+	public void calculadora()
+	{
+		JPanel calPanel = new JPanel();
+		calPanel.setSize(this.getWidth(), this.getHeight());
+		calPanel.setLocation(0,0);
+		calPanel.setBackground(Color.black);
+		calPanel.setLayout(null);
 		
+		JLabel digitos = new JLabel("123.2 ", JLabel.RIGHT);
+		digitos.setSize(410,100);
+		digitos.setFont(new Font("Consolas", Font.BOLD, 40));
+		digitos.setForeground(Color.BLACK);
+		digitos.setLocation(4,10); 
+		calPanel.add(digitos);
+		
+		JLabel pantalla = new JLabel(" ", JLabel.CENTER);
+		pantalla.setSize(410,100);
+		pantalla.setLocation(4,10); 
+		pantalla.setOpaque(true);
+		pantalla.setBackground(new Color(168, 186, 186));
+		calPanel.add(pantalla);
+
+		JButton botonAC = new JButton("AC");
+		confBotonesCal(botonAC);
+		botonAC.setBounds(4, 120, 100, 100);
+        calPanel.add(botonAC);
+        
+        JButton botonA = new JButton("DEL");
+		confBotonesCal(botonA);
+		botonA.setBounds(108, 120, 100, 100);
+        calPanel.add(botonA);
+        
+        JButton botonPorcentaje = new JButton("%");
+		confBotonesCal(botonPorcentaje);
+		botonPorcentaje.setBounds(212, 120, 100,100);
+        calPanel.add(botonPorcentaje);
+        
+        JButton botonDiv = new JButton("/");
+		confBotonesCal(botonDiv);
+		botonDiv.setBounds(316, 120, 100,100);
+        calPanel.add(botonDiv);
+        
+        JButton boton7 = new JButton("7");
+		confBotonesNum(boton7);
+		boton7.setBounds(4, 224, 100, 100);
+        calPanel.add(boton7);
+        
+        JButton boton8 = new JButton("8");
+        confBotonesNum(boton8);
+		boton8.setBounds(108, 224, 100, 100);
+        calPanel.add(boton8);
+        
+        JButton boton9 = new JButton("9");
+        confBotonesNum(boton9);
+		boton9.setBounds(212, 224, 100,100);
+        calPanel.add(boton9);
+        
+        JButton botonMult = new JButton("x");
+		confBotonesCal(botonMult);
+		botonMult.setBounds(316, 224, 100,100);
+        calPanel.add(botonMult);
+        
+        JButton boton4 = new JButton("4");
+        confBotonesNum(boton4);
+		boton4.setBounds(4, 328, 100, 100);
+        calPanel.add(boton4);
+        
+        JButton boton5 = new JButton("5");
+        confBotonesNum(boton5);
+		boton5.setBounds(108, 328, 100, 100);
+        calPanel.add(boton5);
+        
+        JButton boton6 = new JButton("6");
+        confBotonesNum(boton6);
+		boton6.setBounds(212, 328, 100,100);
+        calPanel.add(boton6);
+        
+        JButton botonResta = new JButton("-");
+		confBotonesCal(botonResta);
+		botonResta.setBounds(316, 328, 100,100);
+        calPanel.add(botonResta);
+        
+        JButton boton1 = new JButton("1");
+        confBotonesNum(boton1);
+		boton1.setBounds(4, 432, 100, 100);
+        calPanel.add(boton1);
+        
+        JButton boton2 = new JButton("2");
+        confBotonesNum(boton2);
+		boton2.setBounds(108, 432, 100, 100);
+        calPanel.add(boton2);
+        
+        JButton boton3 = new JButton("3");
+        confBotonesNum(boton3);
+		boton3.setBounds(212, 432, 100,100);
+        calPanel.add(boton3);
+        
+        JButton botonSuma = new JButton("+");
+		confBotonesCal(botonSuma);
+		botonSuma.setBounds(316, 432, 100,100);
+        calPanel.add(botonSuma);
+        
+        JButton botonE = new JButton("E");
+        confBotonesNum(botonE);
+		botonE.setBounds(4, 536, 100, 100);
+        calPanel.add(botonE);
+        
+        JButton boton0 = new JButton("0");
+        confBotonesNum(boton0);
+		boton0.setBounds(108, 536, 100, 100);
+        calPanel.add(boton0);
+        
+        JButton botonPunto = new JButton(".");
+        confBotonesNum(botonPunto);
+		botonPunto.setBounds(212, 536, 100,100);
+        calPanel.add(botonPunto);
+        
+        JButton botonIgual = new JButton("=");
+		confBotonesCal(botonIgual);
+		botonIgual.setBackground(new Color(9, 118, 118));
+		botonIgual.setBounds(316, 536, 100,100);
+        calPanel.add(botonIgual);
+        
+		this.add(calPanel);
+	}
+	
+	public void confBotonesCal(JButton componente)
+	{
+		componente.setBackground(new Color (60, 162, 162));
+		componente.setFont(new Font("Consolas", Font.BOLD, 25));
+		componente.setForeground(Color.WHITE);
+		componente.setFocusable(false);
+	}
+	public void confBotonesNum(JButton componente)
+	{
+		componente.setBackground(new Color (20, 72, 73));
+		componente.setFont(new Font("Consolas", Font.BOLD, 25));
+		componente.setForeground(Color.WHITE);
+		componente.setFocusable(false);
 	}
 	
 	public void admin()
@@ -59,9 +203,12 @@ public class Ventana extends JFrame{
 		
 		//Añadir menu
 		JMenuBar barra = new JMenuBar();
+		barra.setBackground(new Color(105, 132, 133));
 		JMenu menuFile = new JMenu("Archivo");
 		JMenuItem openItem = new JMenuItem("Abrir archivo");
 		JMenuItem crear = new JMenuItem("Crear archivo");
+		openItem.setBackground(new Color(114, 157, 158));
+		crear.setBackground(new Color(114, 157, 158));
 		
 		JLabel adminUsuario = new JLabel("USUARIOS", JLabel.CENTER);
 		adminUsuario.setFont(new Font("Consolas", Font.BOLD, 30));
@@ -145,8 +292,6 @@ public class Ventana extends JFrame{
 		menuFile.add(crear);
 		
 		this.setJMenuBar(barra);
-		
-
 		this.add(adminPanel);
 	}
 	public void login()
