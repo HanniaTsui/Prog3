@@ -1,9 +1,13 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,7 +37,7 @@ public class Ventana extends JFrame{
 		this.setMaximumSize(new Dimension (600,600));
 		this.setMinimumSize(new Dimension (250,250));
 		//this.setResizable(false);
-		this.setLayout(null); //Quitar el molde
+	//	this.setLayout(null); //Quitar el molde
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.iniciarComponentes();
         this.setVisible(true); 
@@ -44,10 +48,9 @@ public class Ventana extends JFrame{
 	//	this.calculadora();
 	//	this.admin();
 	//	this.login();
-		
-		this.newlogin();
+	//	this.newlogin();
 	//	this.registro();
-
+		this.newCalculadora();
 	//	this.repaint(); // repintar componentes.
 		
 	}
@@ -621,5 +624,88 @@ public class Ventana extends JFrame{
         
         this.add(login);
 		
+	}
+	
+	public void newCalculadora () // Calculadora con Layouts
+	{
+		this.setTitle("Calculadora"); // Calculadora
+		this.setSize(420,600); 		  // Calculadora
+		this.setLocationRelativeTo(null);
+		
+		JPanel calPanel = new JPanel();
+		calPanel.setSize(this.getWidth(), this.getHeight());
+		//calPanel.setLocation(0,0);
+		calPanel.setBackground(Color.black);
+		calPanel.setLayout(new BorderLayout ());
+		
+		JLabel text = new JLabel ("100.00  ", 4);
+		text.setFont(new Font("Eras Bold ITC", Font.BOLD, 50));
+		text.setForeground(Color.black);
+		text.setOpaque(true);
+		text.setBackground(new Color(196, 207, 206));
+		calPanel.add(text, BorderLayout.NORTH); 
+		
+		JPanel centro = new JPanel();
+		centro.setBackground(new Color(170, 255, 215));
+		centro.setLayout(new GridLayout(4,3,5,5));
+		calPanel.add(centro, BorderLayout.CENTER);
+		
+		String btns[] = {"7", "8","9","4","5","6","1","2","3","0",".", "/"};
+		for (int i=0; i<12; i++)
+		{
+			JButton boton = new JButton(btns[i]);
+			boton.setBackground(new Color (20, 165, 146));
+			boton.setFont(new Font("Consolas", Font.BOLD, 25));
+			boton.setForeground(Color.BLACK);
+			boton.setBorderPainted(true); //Agregar borde
+			boton.setBorder(BorderFactory.createLineBorder(new Color(20, 99, 88), 5));
+			boton.setFocusable(false);
+			centro.add(boton);
+		}
+		
+		JPanel east = new JPanel();
+		east.setBackground(new Color(170, 255, 215));
+		east.setLayout(new GridLayout(4,1,5,5));
+		calPanel.add(east, BorderLayout.EAST);
+		
+		String btns2[] = {"  +  ", "  -  ","  *  ","  =  "};
+		for (int i=0; i<4; i++)
+		{
+			JButton boton = new JButton(btns2[i]);
+			boton.setBackground(new Color (90, 144, 136));
+			boton.setFont(new Font("Consolas", Font.BOLD, 25));
+			boton.setForeground(Color.BLACK);
+			boton.setBorderPainted(true); //Agregar borde
+			boton.setBorder(BorderFactory.createLineBorder(new Color(20, 99, 88), 5));
+			boton.setFocusable(false);
+			east.add(boton);
+		}
+		
+		JPanel west = new JPanel();
+		west.setBackground(new Color(170, 255, 215));
+	//	west.setLayout(new BoxLayout(west, BoxLayout.Y_AXIS));
+		west.setLayout(new GridLayout(4,1,5,5));
+		calPanel.add(west, BorderLayout.WEST);
+		
+		String btns3[] = {" MC ", " M+ "," AC "," DEL "};
+		for (int i=0; i<4; i++)
+		{
+			JButton boton = new JButton(btns3[i]);
+			boton.setBackground(new Color (106, 124, 121));
+			boton.setFont(new Font("Consolas", Font.BOLD, 25));
+			boton.setForeground(Color.BLACK);
+			boton.setBorderPainted(true); //Agregar borde
+			boton.setBorder(BorderFactory.createLineBorder(new Color(20, 99, 88), 5));
+			boton.setFocusable(false);
+			west.add(boton);
+		}
+		
+ 
+		
+
+		
+		
+		
+		this.add(calPanel);
 	}
 }
