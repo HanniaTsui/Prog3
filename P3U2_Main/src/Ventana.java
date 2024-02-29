@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -23,9 +22,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
 public class Ventana extends JFrame{
 
 	public Ventana() {
@@ -50,7 +51,8 @@ public class Ventana extends JFrame{
 	//	this.login();
 	//	this.newlogin();
 	//	this.registro();
-		this.newCalculadora();
+	//	this.newCalculadora();
+		this.calInteres();
 	//	this.repaint(); // repintar componentes.
 		
 	}
@@ -699,13 +701,255 @@ public class Ventana extends JFrame{
 			boton.setFocusable(false);
 			west.add(boton);
 		}
-		
- 
-		
 
-		
-		
-		
 		this.add(calPanel);
 	}
+	
+	public  void calInteres()
+	{
+		this.setTitle("Calculadora de Interes"); // Calculadora
+		this.setSize(600,600); 		  // Calculadora
+		this.setLocationRelativeTo(null);
+		
+		JPanel calPanel = new JPanel();
+		calPanel.setSize(this.getWidth(), this.getHeight());
+		calPanel.setBackground(Color.white);
+		calPanel.setLayout(new BorderLayout ());
+		this.add(calPanel);
+		
+		
+		JLabel text = new JLabel ("Interés", 0);
+		text.setFont(new Font("Cambria", Font.ITALIC, 40));
+		text.setForeground(Color.red);
+		calPanel.add(text, BorderLayout.NORTH); 
+		
+		JPanel centro = new JPanel();
+		centro.setBackground(new Color(130, 254, 149));
+		centro.setLayout(new GridLayout(8,2));	
+		Border bordeCentro = BorderFactory.createLineBorder(Color.BLACK); 
+        centro.setBorder(bordeCentro);
+		calPanel.add(centro, BorderLayout.CENTER);
+		
+		JLabel west = new JLabel("                 ");
+		west.setBackground(Color.white);
+		west.setOpaque(true);
+		calPanel.add(west,BorderLayout.WEST);
+		
+		JLabel east = new JLabel("                 ");
+		east.setBackground(Color.white);
+		east.setOpaque(true);
+		calPanel.add(east,BorderLayout.EAST);
+		
+		JLabel south = new JLabel("                 ");
+		south.setBackground(Color.white);
+		south.setFont(new Font("Cambria", Font.ITALIC, 40));
+		south.setOpaque(true);
+		calPanel.add(south,BorderLayout.SOUTH);
+		
+		JLabel cal = new JLabel("     Calculadora de interés",2);
+		cal.setFont(new Font("Cambria", Font.ITALIC, 17));
+		cal.setForeground(Color.BLACK);
+		centro.add(cal);
+		
+		
+		JLabel vacio = new JLabel("",0);
+		vacio.setFont(new Font("Cambria", Font.PLAIN, 18));
+		vacio.setForeground(Color.BLACK);
+		centro.add(vacio);
+		
+		
+		JLabel cap = new JLabel("     Capital: ",0);
+		cap.setFont(new Font("Cambria", Font.PLAIN, 18));
+		cap.setForeground(Color.BLACK);
+		centro.add(cap);
+		
+		JPanel panel2 = new JPanel(new GridLayout(3,1));
+	    panel2.setBackground(new Color(130, 254, 149));
+	    centro.add(panel2);
+		
+		    JLabel vacioA = new JLabel("");
+		    vacioA.setBackground(new Color(130, 254, 149));
+		    vacioA.setOpaque(true);
+		    panel2.add(vacioA);
+		    
+			JTextField text1 = new JTextField("1500",0);
+			text1.setFont(new Font("Cambria", Font.PLAIN, 18));
+			text1.setBackground(Color.white);
+			text1.setHorizontalAlignment(0); 
+			text1.setForeground(Color.BLACK);
+			text1.setOpaque(true);
+			panel2.add(text1);
+			
+			JLabel vacioB = new JLabel(" ");
+			vacioB.setBackground(new Color(130, 254, 149));
+			vacioB.setOpaque(true);
+			panel2.add(vacioB);
+	
+		
+		JLabel tiempo = new JLabel("     Tiempo: ",0);
+		tiempo.setFont(new Font("Cambria", Font.PLAIN, 18));
+		tiempo.setForeground(Color.BLACK);
+		centro.add(tiempo);
+		
+		
+		JPanel panel3 = new JPanel(new GridLayout(3,1));
+	    panel3.setBackground(new Color(130, 254, 149));
+	    centro.add(panel3);
+	    
+		    JLabel vacioC = new JLabel("");
+		    vacioC.setBackground(new Color(130, 254, 149));
+		    vacioC.setOpaque(true);
+		    panel3.add(vacioC);
+	    
+			JTextField text2 = new JTextField("2",0);
+			text2.setFont(new Font("Cambria", Font.PLAIN, 18));
+			text2.setBackground(Color.white);
+			text2.setHorizontalAlignment(0); 
+			text2.setOpaque(true);
+			text2.setForeground(Color.BLACK);
+			panel3.add(text2);
+			
+			JLabel vacioD = new JLabel("");
+			vacioD.setBackground(new Color(130, 254, 149));
+			vacioD.setOpaque(true);
+			panel3.add(vacioD);
+		
+		
+		JLabel tasa = new JLabel("     Tasa de Intéres: ",0);
+		tasa.setFont(new Font("Cambria", Font.PLAIN, 18));
+		tasa.setForeground(Color.BLACK);
+		centro.add(tasa);
+		
+		JPanel panel4 = new JPanel(new GridLayout(3,1));
+	    panel4.setBackground(new Color(130, 254, 149));
+	    centro.add(panel4);
+		
+		    JLabel vacioE = new JLabel("");
+		    vacioE.setBackground(new Color(130, 254, 149));
+		    vacioE.setOpaque(true);
+		    panel4.add(vacioE);
+		    
+			JTextField text3 = new JTextField("0.1",0);
+			text3.setFont(new Font("Cambria", Font.PLAIN, 18));
+			text3.setBackground(Color.white);
+			text3.setHorizontalAlignment(0); 
+			text3.setOpaque(true);
+			text3.setForeground(Color.BLACK);
+			panel4.add(text3);
+		
+			JLabel vacioF = new JLabel("");
+			vacioF.setBackground(new Color(130, 254, 149));
+			vacioF.setOpaque(true);
+		    panel4.add(vacioF);
+		
+		JPanel botoneA = new JPanel();
+		botoneA.setBackground(new Color(130, 254, 149));
+		botoneA.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 20));
+		centro.add(botoneA, BorderLayout.SOUTH);
+		
+		
+		JButton calcular = new JButton ("Calcular");
+		calcular.setBackground(Color.black);
+		calcular.setFont(new Font("Consolas", Font.BOLD, 18));
+		calcular.setForeground(Color.white);
+		calcular.setBorderPainted(true); //Agregar borde
+		calcular.setBorder(BorderFactory.createLineBorder(new Color(99, 103, 100), 3));
+		calcular.setFocusable(false);
+		botoneA.add(calcular);
+		
+		
+		
+		JPanel botoneB = new JPanel();
+		botoneB.setBackground(new Color(130, 254, 149));
+		botoneB.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 20));
+		centro.add(botoneB, BorderLayout.SOUTH);
+		
+		
+		JButton cancelar = new JButton ("Cancelar");
+		cancelar.setBackground(Color.black);
+		cancelar.setFont(new Font("Consolas", Font.BOLD, 18));
+		cancelar.setForeground(Color.white);
+		cancelar.setBorderPainted(true); //Agregar borde
+		cancelar.setBorder(BorderFactory.createLineBorder(new Color(99, 103, 100), 3));
+		cancelar.setFocusable(false);
+		botoneB.add(cancelar);
+		
+		
+	
+		JLabel vacio2 = new JLabel(" ",0);
+		vacio2.setFont(new Font("Cambria", Font.PLAIN, 18));
+		vacio2.setBackground(Color.white);
+		vacio2.setForeground(Color.BLACK);
+		vacio2.setOpaque(true);
+		centro.add(vacio2);
+		
+		JLabel vacio3 = new JLabel("",0);
+		vacio3.setFont(new Font("Cambria", Font.PLAIN, 18));
+		vacio3.setBackground(Color.white);
+		vacio3.setOpaque(true);
+		vacio3.setForeground(Color.BLACK);
+		centro.add(vacio3);
+		
+		JLabel interes = new JLabel("     Intéres: ",0);
+		interes.setFont(new Font("Cambria", Font.PLAIN, 18));
+		interes.setForeground(Color.BLACK);
+		interes.setBackground(new Color(255, 113, 141));
+		interes.setOpaque(true);
+		centro.add(interes);
+		
+		JPanel panel5 = new JPanel(new GridLayout(3,1));
+	    panel5.setBackground(new Color(255,113,141));
+	    centro.add(panel5);
+		
+		    JLabel vacioG = new JLabel("");
+		    vacioG.setBackground(new Color(255, 113, 141));
+		    vacioG.setOpaque(true);
+		    panel5.add(vacioG);
+		    
+			JTextField text4 = new JTextField(" 315.10235",0);
+			text4.setFont(new Font("Cambria", Font.PLAIN, 18));
+			text4.setBackground(Color.white);
+			text4.setForeground(Color.BLACK);
+			text4.setHorizontalAlignment(0); 
+			text4.setOpaque(true);
+			panel5.add(text4);
+			
+			JLabel vacioH = new JLabel("");
+			vacioH.setBackground(new Color(255, 113, 141));
+			vacioH.setOpaque(true);
+		    panel5.add(vacioH);
+			
+		
+		JLabel monto = new JLabel("     Monto: ",0);
+		monto.setFont(new Font("Cambria", Font.PLAIN, 18));
+		monto.setBackground(new Color(255, 113, 141));
+		monto.setForeground(Color.BLACK);
+		monto.setOpaque(true);
+		centro.add(monto);
+		
+		JPanel panel6 = new JPanel(new GridLayout(3,1));
+	    panel6.setBackground(new Color(255,113,141));
+	    centro.add(panel6);
+		
+			JLabel vacioI = new JLabel("");
+			vacioI.setBackground(new Color(255, 113, 141));
+			vacioI.setOpaque(true);
+		    panel6.add(vacioI);
+		
+			JTextField text5 = new JTextField(" 1815.2634",0);
+			text5.setFont(new Font("Cambria", Font.PLAIN, 18));
+			text5.setBackground(Color.white);
+			text5.setOpaque(true);
+			text5.setHorizontalAlignment(0); 
+			text5.setForeground(Color.BLACK);
+			panel6.add(text5);
+			
+			JLabel vacioJ = new JLabel("");
+			vacioJ.setBackground(new Color(255, 113, 141));
+			vacioJ.setOpaque(true);
+		    panel6.add(vacioJ);
+		
+	}
+	
+	
 }
