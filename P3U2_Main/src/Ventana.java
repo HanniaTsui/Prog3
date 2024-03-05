@@ -1,10 +1,18 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -52,8 +60,56 @@ public class Ventana extends JFrame{
 	//	this.newlogin();
 	//	this.registro();
 	//	this.newCalculadora();
-		this.calInteres();
+	//	this.calInteres();
+		this.repaint();
+		this.revalidate();
 	//	this.repaint(); // repintar componentes.
+		
+	}
+	@Override
+	public  void paint(Graphics g)
+	{
+	//	this.setTitle("Paint"); //
+		//this.setSize(600,600); 		  
+		//this.setLocationRelativeTo(null);
+		
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.DARK_GRAY);
+		g2d.drawLine(50, 500, 700, 70); // x1,y1, x2, y2 LINEA
+		g2d.fillRect(100, 50, 200, 105); //rectangulo con relleno
+		g2d.clearRect(125, 80, 150, 100); // limpiar una parte 
+		
+	//	g2d.drawArc(100, 300, 100, 100, 50, 180); // dibuja un arco // x,y, w, h, anguloInicial, anguloExtension
+		g2d.fillArc(250, 300, 100, 100, 0, 180); // pinta un arco
+		
+		g2d.drawOval(350, 300, 100, 150); //dibuja un ovalo
+		g2d.fillOval(550, 300, 100, 150); // rellena obvalo
+		
+		int xPoints[] = {200,250,300}; // areglo de coordenadas x
+		int yPoints[] = {250,200,300}; // arreglo de coordernas y 
+		
+		g2d.drawPolygon(xPoints, yPoints, 3); // dibujar poligono
+		g2d.setColor(Color.black);
+		g2d.fillPolygon(xPoints, yPoints, 3);
+		
+		g2d.setFont(new Font("Heroes Assemble Condensed Italic", Font.PLAIN, 80));
+		g2d.drawString("AVENGERS", 200, 550); // Texto
+		
+		
+		g2d.setStroke(new BasicStroke(10));
+		
+		g2d.fillRoundRect(500,500,100,80,20,20); // Rectangulo con esquinas redondeadas
+		
+		
+		try {
+			BufferedImage image = ImageIO.read(new File("src/abeja.png"));
+			g2d.drawImage(image, 500, 80, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
@@ -509,7 +565,6 @@ public class Ventana extends JFrame{
         
         this.add(registro);
 	}
-
 	
 	public void newlogin()
 	{
