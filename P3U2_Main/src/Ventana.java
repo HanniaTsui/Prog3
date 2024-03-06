@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +39,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class Ventana extends JFrame{
+public class Ventana extends JFrame implements MouseListener{
 
 	public Ventana() {
 		// TODO Auto-generated constructor stub
@@ -50,6 +54,7 @@ public class Ventana extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.iniciarComponentes();
         this.setVisible(true); 
+        this.addMouseListener(this);
 	}
 	
 	public void iniciarComponentes()
@@ -63,11 +68,251 @@ public class Ventana extends JFrame{
 	//	this.calInteres();
 		this.repaint();
 		this.revalidate();
+		
 	//	this.repaint(); // repintar componentes.
 		
 	}
 	@Override
-	public  void paint (Graphics g)
+	public void paint(Graphics g)
+	{
+		this.setTitle("Paint"); //
+		this.setSize(1200,800); 		  
+		this.getContentPane().setBackground(new Color(179, 238, 254));
+		this.setLocationRelativeTo(null);
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+		
+		g2d.setColor(Color.black); 
+        g2d.fillOval(70,550, 120,120);
+        g2d.setColor(Color.black); 
+        g2d.fillOval(100,520, 70,120);
+        
+		g2d.setColor(new Color(65, 129, 36)); // Circulo verde
+        g2d.fillOval(75,552, 110,110);
+        g2d.setColor(new Color(65, 129, 36)); // Circulo verde
+        g2d.fillOval(102,525, 65,110);
+		
+		g2d.setColor(new Color(168, 114, 69)); // cafe
+		g2d.fillRect(0, 650, this.getWidth(),150); 
+		g2d.setColor(new Color(238, 154, 101)); // cafe claro
+		g2d.fillRect(0, 610, this.getWidth(),40); 
+		
+		int separacionLineas = 50; //Lineas cafes
+        int yLinea = 650; 
+
+        for (int i = 0; i < 3; i++) {
+        	g2d.setColor(new Color(94, 63, 37));
+        	g2d.setStroke(new BasicStroke(4)); 
+            g2d.drawLine(0, yLinea, this.getWidth(), yLinea); 
+            yLinea += separacionLineas; 
+              
+        }
+        int xLinea =0;
+        for (int i = 0; i < 30; i++) {
+            g2d.drawLine(xLinea, 650, xLinea, 800);
+            xLinea += separacionLineas;
+        }
+        
+        g2d.setColor(new Color(81, 217, 107));
+        g2d.fillRect(1050,410,200,200);
+
+        g2d.setColor(new Color(27, 88, 31)); //Verde cuadro
+        g2d.setStroke(new BasicStroke(8));
+        g2d.drawLine(1051, 605, 1200, 605);
+        g2d.setStroke(new BasicStroke(4));
+        g2d.setColor(Color.black);
+        g2d.setStroke(new BasicStroke(6)); 
+        g2d.drawRect(1050,410,200,200);
+        
+        g2d.setColor(Color.gray); //Tornillos grises (DEL CUADRO VERDE)
+        g2d.fillOval(1070,430, 20,20);
+        g2d.setStroke(new BasicStroke(3));
+        g2d.setColor(Color.black);
+        g2d.drawOval(1070,430, 20,20);
+        
+        g2d.setColor(Color.gray);
+        g2d.fillOval(1070,570, 20,20);
+        g2d.setStroke(new BasicStroke(3));
+        g2d.setColor(Color.black);
+        g2d.drawOval(1070,570, 20,20);
+        
+        g2d.fillRect(480,400, 200, 210); //Fondo negro (azul
+        g2d.setColor(new Color(132, 192, 255));
+        g2d.fillRect(450,350, 200, 260);
+        g2d.setColor(new Color(22, 143, 224)); //Lineas de los cuadros(sombras)
+        g2d.setStroke(new BasicStroke(8));
+        g2d.drawLine(530, 605, 645, 605);
+        g2d.drawLine(645, 355, 645, 600);
+        g2d.setStroke(new BasicStroke(4));
+        g2d.setColor(Color.black);
+        g2d.drawRect(450,350, 200, 260);
+        
+        g2d.fillRect(370,440, 200, 170); //Fondo negro (rosa
+        g2d.setColor(new Color(255, 195, 184));
+        g2d.fillRect(300,410, 235, 200);
+        g2d.setColor(new Color(246, 173, 156)); //Lineas de los cuadros(sombras)
+        g2d.setStroke(new BasicStroke(8));
+        g2d.drawLine(303, 605, 530, 605);
+        g2d.drawLine(530, 412, 530, 605);
+        g2d.setStroke(new BasicStroke(4));
+        g2d.setColor(Color.black);
+        g2d.drawRect(300,410, 235, 200);
+        
+        g2d.setStroke(new BasicStroke(4));
+        g2d.setColor(new Color(255, 144, 97)); //Cuadros crema
+        g2d.fillRect(79,244, 78,78);
+        g2d.setColor(Color.black);
+        g2d.drawRect(75,240, 80,80);
+        
+        g2d.setColor(new Color(255, 144, 97));
+        g2d.fillRect(208,104, 78,78);
+        g2d.setColor(Color.black);
+        g2d.drawRect(205,100, 80,80);
+        g2d.setColor(new Color(255, 144, 97));
+        g2d.fillRect(293,104, 78,78);
+        g2d.setColor(Color.black);
+        g2d.drawRect(290,100, 80,80);
+        
+        
+        g2d.setColor(new Color(255, 144, 97));
+        g2d.fillRect(1024,244, 78,78);
+        g2d.setColor(Color.black);
+        g2d.drawRect(1020,240, 80,80);
+        
+        g2d.setColor(Color.gray); //Tornillos grises (Del rosa)
+        g2d.fillOval(320,430, 20,20); //1
+        g2d.fillOval(495,430, 20,20); //2
+        g2d.fillOval(320,570, 20,20); //3
+        g2d.fillOval(495,570, 20,20); //4
+        g2d.setStroke(new BasicStroke(3));
+        g2d.setColor(Color.black);
+        g2d.drawOval(320,430, 20,20); //1
+        g2d.drawOval(495,430, 20,20); //2
+        g2d.drawOval(320,570, 20,20); //3
+        g2d.drawOval(495,570, 20,20); //4
+        
+        g2d.setColor(Color.gray); //Tornillos grises (Del azuñ)
+        g2d.fillOval(470,370, 20,20); //1
+        g2d.fillOval(610,370, 20,20); //2
+        g2d.fillOval(610,570, 20,20); //4
+        g2d.setStroke(new BasicStroke(3));
+        g2d.setColor(Color.black);
+        g2d.drawOval(470,370, 20,20); //1
+        g2d.drawOval(610,370, 20,20); //2
+        g2d.drawOval(610,570, 20,20); //4
+        
+        g2d.setColor(Color.black);
+        g2d.setFont(new Font("Arial Black", Font.PLAIN, 40));
+        g2d.drawString(".", 210, 115);
+        g2d.drawString(".", 268, 115);
+        g2d.drawString(".", 210, 172);
+        g2d.drawString(".", 268, 172);
+        g2d.drawString(".", 298, 115);
+        g2d.drawString(".", 350, 115);
+        g2d.drawString(".", 298, 172);
+        g2d.drawString(".", 350, 172);
+        
+        g2d.drawString(".", 80, 255);
+        g2d.drawString(".", 138, 255);
+        g2d.drawString(".", 80, 312);
+        g2d.drawString(".", 138, 312);
+        
+        g2d.drawString(".", 1025, 255);
+        g2d.drawString(".", 1083, 255);
+        g2d.drawString(".", 1025, 312);
+        g2d.drawString(".", 1083, 312);
+        
+        g2d.setFont(new Font("Super Mario Bros. 2", Font.PLAIN, 40));
+        g2d.setColor(Color.black);
+        g2d.drawString("?", 1048, 302);
+        g2d.setColor(new Color(159, 105, 22));
+        g2d.drawString("?", 1045, 300);
+        
+        g2d.setColor(Color.black);
+        g2d.drawString("?", 100, 302);
+        g2d.setColor(new Color(159, 105, 22));
+        g2d.drawString("?", 97, 300);
+        
+        g2d.setColor(Color.black);
+        g2d.drawString("?", 100, 302);
+        g2d.setColor(new Color(159, 105, 22));
+        g2d.drawString("?", 97, 300);
+        
+        g2d.setColor(Color.black);
+        g2d.drawString("?", 230, 162);
+        g2d.setColor(new Color(159, 105, 22));
+        g2d.drawString("?", 227, 160);
+        
+        g2d.setColor(Color.black);
+        g2d.drawString("?", 315, 162);
+        g2d.setColor(new Color(159, 105, 22));
+        g2d.drawString("?", 312, 160);
+       
+        
+        
+        g2d.setColor(new Color(34, 133, 28));
+        g2d.fillRect(775, 385, 170, 65);
+        g2d.fillRect(800,450, 120, 160);
+        g2d.setColor(Color.black);
+        g2d.setColor(new Color(88, 210, 112)); //Lineas del verde
+        g2d.setStroke(new BasicStroke(4));
+        g2d.drawLine(805, 390, 805, 605);
+        g2d.setStroke(new BasicStroke(8));
+        g2d.drawLine(815, 390, 815, 605);
+        g2d.setStroke(new BasicStroke(10));
+        g2d.drawLine(840, 390, 840, 605);
+        g2d.setStroke(new BasicStroke(5));
+        g2d.drawLine(870, 390, 870, 605);
+        g2d.setStroke(new BasicStroke(5));
+        g2d.setColor(new Color(18, 60, 16));
+        g2d.drawLine(875, 390, 875, 605);
+        g2d.setStroke(new BasicStroke(5));
+        g2d.setColor(new Color(88, 210, 112));
+        g2d.drawLine(880, 390, 880, 605);
+        g2d.drawLine(900, 390, 900, 605);
+        g2d.setColor(Color.black);
+        g2d.setStroke(new BasicStroke(11));
+        g2d.drawLine(907, 390, 907, 605);
+        g2d.setColor(new Color(88, 210, 112));
+        g2d.setStroke(new BasicStroke(5));
+        g2d.drawLine(919, 390, 919, 605);
+        g2d.setColor(new Color(18, 60, 16));
+        g2d.setStroke(new BasicStroke(10));
+        g2d.drawLine(928, 390, 928, 446);
+        g2d.setColor(new Color(88, 210, 112)); //Lineas del verde
+        g2d.setStroke(new BasicStroke(3));
+        g2d.drawLine(932, 390, 932,450);
+        g2d.setColor(Color.black);
+        g2d.setStroke(new BasicStroke(7));
+        g2d.drawLine(939, 390, 939,450);
+        g2d.setColor(Color.black);
+        g2d.drawRect(775, 385, 170, 65);
+        g2d.drawRect(800,450, 120, 160);
+        
+        
+        
+        
+        
+        try {
+			BufferedImage image = ImageIO.read(new File("src/mario.png"));
+			g2d.drawImage(image, 680,495, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        try {
+			BufferedImage image = ImageIO.read(new File("src/flor.png"));
+			g2d.drawImage(image, 810,285, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+    }
+	
+	/*public  void paint (Graphics g)
 	{
 		this.setTitle("Paint"); //
 		this.setSize(800,700); 		  
@@ -186,7 +431,7 @@ public class Ventana extends JFrame{
         
         
         
-	}
+	}*/
 /*	public  void paint(Graphics g)
 	{
 	//	this.setTitle("Paint"); //
@@ -1122,6 +1367,38 @@ public class Ventana extends JFrame{
 			vacioJ.setBackground(new Color(255, 113, 141));
 			vacioJ.setOpaque(true);
 		    panel6.add(vacioJ);
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println(e.getX());
+		System.out.println(e.getY());
+		System.out.println();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	
