@@ -43,7 +43,7 @@ public class Ventana extends JFrame{
 		this.setTitle("Mi ventana");
 		this.setSize(900,760);
 		this.setLocationRelativeTo(null);
-		this.setMaximumSize(new Dimension (600,600));
+		this.setMaximumSize(new Dimension (800,800));
 		this.setMinimumSize(new Dimension (250,250));
 		//this.setResizable(false);
 	//	this.setLayout(null); //Quitar el molde
@@ -67,7 +67,127 @@ public class Ventana extends JFrame{
 		
 	}
 	@Override
-	public  void paint(Graphics g)
+	public  void paint (Graphics g)
+	{
+		this.setTitle("Paint"); //
+		this.setSize(800,700); 		  
+		this.getContentPane().setBackground(new Color(0, 194, 255));
+		this.setLocationRelativeTo(null);
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+		
+		g2d.setColor(new Color(53, 77, 0)); // Verde Oscuro
+		g2d.fillRect(0, 560, this.getWidth(), 20); 
+		
+		g2d.setColor(new Color(104, 150, 6));  // Verde
+		g2d.fillRect(0, 580, this.getWidth(), 40);
+		
+		g2d.setColor(new Color(184, 154, 66)); // Amarillo
+		g2d.fillRect(0, 620, this.getWidth(), 40);
+		
+		g2d.setColor(new Color(103,75,2));  // Cafe
+		g2d.fillRect(0, 660, this.getWidth(), 40);
+		
+		g2d.setColor(new Color(224, 145, 28)); //Cerca fondo amarillo
+		g2d.fillRect(0, 410, this.getWidth(), 80);
+		
+		int ancho = 50;
+        int largo = 180;
+        int separacion = 20;
+        int x = 25; // Posicion inicial
+        int y = 380;
+     
+        //  11 rectángulos
+        for (int i = 0; i < 11; i++) {
+        	g2d.setColor(new Color(255, 181, 51));
+            g2d.fillRect(x, y, ancho, largo);
+            x += ancho + separacion;
+        }
+        
+        int[] vx = {25,50,75}; // Triangulos de cerca
+        int[] vy = {380,340,380};
+        int xTri=25;
+        // Dibujar 10 polígonos separados
+        for (int i = 0; i < 11; i++) {
+            // Dibujar polígono en la posición actual
+            g2d.fillPolygon(vx, vy, 3);
+            // Incrementar la posición para el siguiente polígono
+            xTri += 50 + separacion;
+            for (int j = 0; j < vx.length; j++) {
+                vx[j] += 50 + separacion;
+            }
+        }
+        
+        g2d.setColor(new Color(102, 102, 102)); // Gris
+        g2d.fillRect(165, 530, 470, 30);
+        
+        g2d.setColor(new Color(255, 213, 98)); // Casa Amarillo
+        g2d.fillRect(190, 300, 420, 230);
+        
+        int [] vx4 = {190,610,610}; //Sombra casa
+        int [] vy4 = {300,300,370};
+        g2d.setColor(new Color(193, 143, 6));
+        g2d.fillPolygon (vx4, vy4, 3);
+        
+        int [] vx5 = {457,565,610,610}; //Sombra ventana
+        int [] vy5 = {462,462,465,495};
+        g2d.setColor(new Color(193, 143, 6));
+        g2d.fillPolygon (vx5, vy5, 4);
+        
+        int separacionLineas = 33; //Lineas cafes
+        int yLinea = 300; 
+
+        for (int i = 0; i < 8; i++) {
+        	g2d.setColor(new Color(114, 79, 0));
+        	g2d.setStroke(new BasicStroke(3)); 
+            g2d.drawLine(190, yLinea, 610, yLinea); 
+            yLinea += separacionLineas; 
+        }
+        
+        
+        g2d.setColor(new Color(102,102,102)); // Gris Oscuro chimenea
+        g2d.fillRect(470,120,100,40);
+        
+        g2d.setColor(new Color(128, 128, 128)); //Gris claro
+        g2d.fillRect(480, 160, 80, 80);
+        int [] vx3 = {480,560,560};  // Triangulo chimenea sombra
+        int [] vy3 = {160,200,160};
+        g2d.setColor(new Color(77,77,77));
+        g2d.fillPolygon (vx3, vy3, 3);
+        
+        
+        int [] vx2 = {130,300,670}; // Techo
+        int [] vy2 = {300,90,300};
+        g2d.setColor(new Color(177, 11, 28));
+        g2d.fillPolygon (vx2, vy2, 3);
+        
+        //Ventana
+        g2d.setColor(Color.white);
+        g2d.fillRect(460, 340, 100, 100);
+        
+        g2d.setColor(new Color(179, 6, 32));
+        g2d.setStroke(new BasicStroke(5)); 
+        g2d.drawRect(460, 340,100,100);
+        g2d.drawLine(510, 340, 510, 440);
+        g2d.drawLine(460,390,560,390);
+        
+        g2d.setColor(new Color(77,77,77)); 
+        g2d.fillRect(455,442,112,20);
+        
+        g2d.setColor(new Color(159, 110, 0)); // Puerta
+        g2d.fillRect(240, 330,100,200);
+        g2d.setColor(new Color(114, 79, 0));
+        g2d.setStroke(new BasicStroke(5)); 
+        g2d.drawRect(240, 330,100,200);
+        
+        g2d.setColor(Color.white); // Circulo blanco
+        g2d.fillOval(310,420, 20,20);
+        
+        
+        
+        
+	}
+/*	public  void paint(Graphics g)
 	{
 	//	this.setTitle("Paint"); //
 		//this.setSize(600,600); 		  
@@ -108,10 +228,9 @@ public class Ventana extends JFrame{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 		
-		
-	}
+	}*/
 	
 	public void calculadora()
 	{
