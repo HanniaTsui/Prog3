@@ -9,13 +9,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -39,41 +40,369 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class Ventana extends JFrame implements MouseListener{
+public class Ventana extends JFrame {
 
 	public Ventana() {
 		// TODO Auto-generated constructor stub
 		
 		this.setTitle("Mi ventana");
-		this.setSize(900,760);
+	//	this.setSize(900,760);
+	//	this.setSize(450,590);
+	//	this.setSize(1200,800); 
+		this.setSize(900,560); 
 		this.setLocationRelativeTo(null);
-		this.setMaximumSize(new Dimension (800,800));
-		this.setMinimumSize(new Dimension (250,250));
+	//	this.setMaximumSize(new Dimension (800,800));
+	//	this.setMinimumSize(new Dimension (250,250));
 		//this.setResizable(false);
 	//	this.setLayout(null); //Quitar el molde
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.iniciarComponentes();
         this.setVisible(true); 
-        this.addMouseListener(this);
 	}
 	
 	public void iniciarComponentes()
 	{
 	//	this.calculadora();
 	//	this.admin();
-	//	this.login();
+		this.login();
 	//	this.newlogin();
-	//	this.registro();
+		this.registro();
 	//	this.newCalculadora();
 	//	this.calInteres();
-		this.repaint();
-		this.revalidate();
+	//	this.repaint();
+	//	this.revalidate();
 		
 	//	this.repaint(); // repintar componentes.
 		
 	}
-	@Override
+/*	@Override
 	public void paint(Graphics g)
+	{
+		this.setTitle("Paint"); //
+		this.setSize(1200,800); 		  
+		this.getContentPane().setBackground(new Color(3, 90, 185));
+		this.setLocationRelativeTo(null);
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+		
+		g2d.setColor(new Color(201, 146, 89)); // cafe claro
+		g2d.fillRect(0, 650, this.getWidth(),150);
+		
+		int radio=5;
+		int espacios=50;
+		int iniX= 20;
+		int iniY=675;
+		for(int i=0; i<25; i++)
+		{
+			int x=iniX+i *espacios;
+			int y=iniY;
+			g2d.setColor(new Color(235, 192, 93));
+			g2d.fillOval(x, y, 2*radio, 2*radio);
+			g2d.fillOval(x+20, y+40, 2*radio, 2*radio);
+			g2d.fillOval(x, y+80, 2*radio, 2*radio);
+			
+			
+			g2d.setStroke(new BasicStroke(4)); //Bordes circulos 
+			g2d.setColor(new Color(134, 102, 30));
+			g2d.drawOval(x-25,y-57, 2*radio+50,2*radio+40);
+			
+			g2d.setColor(new Color(14, 193, 28));  //Circulos verdes - Pasto
+			g2d.fillOval(x-25,y-60, 2*radio+50,2*radio+40);
+			g2d.setColor(new Color(20, 108, 31));
+			g2d.setStroke(new BasicStroke(4)); //Bordes circulos 
+			g2d.drawOval(x-25,y-63, 2*radio+50,2*radio+40);
+			
+			g2d.setColor(Color.black);
+			g2d.setStroke(new BasicStroke(3)); //Bordes circulos 
+			g2d.drawOval(x-25,y-60, 2*radio+50,2*radio+40);
+			
+			
+			
+		}
+		
+		//Formas verde claro
+		g2d.setColor(new Color(149, 193, 199));
+		g2d.fillRect(50,300, 200, 310);
+		g2d.fillOval(50, 200,200,200);
+		g2d.fillRect(500,300, 200, 310);
+		g2d.fillOval(500, 200,200,200);
+		g2d.fillRect(700,200, 200, 410);
+		g2d.fillOval(700, 100,200,200);
+		
+		g2d.setColor(new Color(198, 227, 231));
+		g2d.fillRect(50,300, 170, 310);
+		g2d.fillOval(50, 200,170,200);
+		g2d.fillRect(500,300, 170, 310);
+		g2d.fillOval(500, 200,170,200);
+		g2d.fillRect(700,200, 170, 410);
+		g2d.fillOval(700, 100,170,200);
+		
+		
+		// Nubes
+		g2d.setColor(new Color(178, 211, 214));
+		g2d.fillRoundRect(-30,300,200,50,80,40);
+		g2d.fillRoundRect(250,350,330,50,80,40);
+		g2d.fillRoundRect(360,450,200,50,80,40);
+		g2d.fillRoundRect(190,510,200,50,80,40);
+		g2d.fillRoundRect(410,540,200,50,80,40);
+		g2d.fillRoundRect(660,380,200,50,80,40);
+		g2d.fillRoundRect(850,225,200,50,80,40);
+		g2d.fillRoundRect(970,165,200, 50,80,40);
+		g2d.fillRoundRect(1040,470,200,50,80,40);
+		
+		g2d.setColor(new Color(236, 243, 254));
+		g2d.fillRoundRect(-30,295,200,50,80,40);
+		g2d.fillRoundRect(250,345,330,50,80,40);
+		g2d.fillRoundRect(360,445,200,50,80,40);
+		g2d.fillRoundRect(190,505,200,50,80,40);
+		g2d.fillRoundRect(410,535,200,50,80,40);
+		g2d.fillRoundRect(660,375,200,50,80,40);
+		g2d.fillRoundRect(850,220,200,50,80,40);
+		g2d.fillRoundRect(970,160,200, 50,80,40);
+		g2d.fillRoundRect(1040,465,200,50,80,40);
+		
+		//Bordes
+		g2d.setColor(new Color(18, 81, 117));
+		g2d.setStroke(new BasicStroke(7));
+		g2d.drawRect(-50,530, 170, 80);
+		g2d.drawArc(-50, 440,170,200,0,180);
+		g2d.drawRect(500,510, 220, 100);
+		g2d.drawArc(500, 420,220,200,0,180);
+		g2d.drawRect(750,390, 220, 220);
+		g2d.drawArc(750, 300,220,200,0,180);
+		g2d.drawRect(1100,460, 220, 150);
+		g2d.drawArc(1100, 360,220,200,0,180);
+		
+		//Formas azul
+		g2d.setColor(new Color(18, 81, 117));
+		g2d.fillRect(-50,530, 200, 80);
+		g2d.fillOval(-50, 440,200,170);
+		g2d.fillRect(500,510, 250, 100);
+		g2d.fillOval(500, 420,250,200);
+		g2d.fillRect(750,390, 250, 220);
+		g2d.fillOval(750, 300,250,200);
+		
+		g2d.setColor(new Color(118, 178, 215));
+		g2d.fillRect(-50,530, 170, 80);
+		g2d.fillOval(-50, 440,170,200);
+		g2d.fillRect(500,510, 220, 100);
+		g2d.fillOval(500, 420,220,200);
+		g2d.fillRect(750,390, 220, 220);
+		g2d.fillOval(750, 300,220,200);
+		
+		
+		g2d.fillRect(1100,460, 220, 150);
+		g2d.fillOval(1100, 360,220,200);
+		
+		g2d.setColor(new Color(236, 243, 254));
+		g2d.fillArc(870,530,200,160,0,180);
+		
+		
+		g2d.setStroke(new BasicStroke(4)); 
+		g2d.setColor(Color.black);//Arbusto
+		g2d.drawArc(197,536,200,150,0,180);
+		g2d.drawArc(177,566,80,80,0,180);
+		g2d.drawArc(298,526,85,80,0,180);
+		g2d.drawArc(332,566,100,80,0,180);
+		
+		g2d.setStroke(new BasicStroke(7)); 
+		g2d.setColor(new Color(20, 108, 31));//Arbusto
+		g2d.drawArc(200,540,200,150,0,180);
+		g2d.drawArc(180,570,80,80,0,180);
+		g2d.drawArc(300,530,80,80,0,180);
+		g2d.drawArc(330,570,100,80,0,180);
+		
+		
+		g2d.setColor(new Color(3, 203, 3));//Arbusto
+		g2d.fillArc(200,540,200,150,0,180);
+		g2d.fillArc(180,570,80,80,0,180);
+		g2d.fillArc(300,530,80,80,0,180);
+		g2d.fillArc(330,570,100,80,0,180);
+		
+		
+		g2d.setStroke(new BasicStroke(3)); //PASTOOO
+		g2d.setColor(Color.black);
+		g2d.drawLine(0,610, this.getWidth(), 610);
+		g2d.setColor(new Color(14, 193, 28)); 
+		g2d.fillRect(0, 610, this.getWidth(),30);
+		
+		//Piedras
+		g2d.setColor(new Color(115, 112, 113));
+		g2d.fillRoundRect(992, 410, 67, 200, 15, 15);
+		
+		//
+		g2d.setColor(new Color(198, 197, 204));
+		g2d.fillRoundRect(990, 410, 60,40 , 15, 15);
+		g2d.fillRoundRect(990, 460, 60,40 , 15,15);
+		g2d.fillRoundRect(990, 510, 60,40 , 15,15);
+		g2d.fillRoundRect(990, 560, 60,40 , 15,15);
+		
+		
+		g2d.setColor(new Color(221, 159, 62));
+		g2d.fillRoundRect(1060, 410, 70,50 , 15, 15);
+		g2d.fillRoundRect(1130, 410, 70,50 , 15, 15);
+		
+		g2d.setColor(new Color(255, 213, 46));
+		g2d.fillRoundRect(1060, 410, 60,40 , 15, 15);
+		g2d.fillRoundRect(1130, 410, 60,40 , 15, 15);
+		
+		
+		
+		g2d.setColor(Color.black);
+		g2d.drawRoundRect(990, 410, 70,50 , 15, 15);
+		g2d.drawRoundRect(990, 460, 70,50 , 15,15);
+		g2d.drawRoundRect(990, 510, 70,50 , 15,15);
+		g2d.drawRoundRect(990, 560, 70,50 , 15,15);
+		g2d.drawRoundRect(1060, 410, 70,50 , 15, 15);
+		g2d.drawRoundRect(1130, 410, 70,50 , 15, 15);
+		g2d.setFont(new Font("Arial Black", Font.BOLD, 20));
+		g2d.drawString(" |   |",1072,435);
+		g2d.drawString(" |   |",1142,435);
+		
+		//Puntos
+		g2d.setColor(new Color(236, 243, 254));
+		g2d.fillOval(150,250, 15, 30);
+		g2d.fillOval(150,370, 15, 30);
+		g2d.fillOval(90,400, 15, 30);
+		g2d.fillOval(530,403, 15, 30);
+		g2d.fillOval(530,290, 15, 30);
+		g2d.fillOval(610,250, 15, 30);
+		g2d.fillOval(730,250, 20, 30);
+		g2d.fillOval(815,170, 20, 30);
+		g2d.fillOval(815,390, 20, 30);
+		g2d.fillOval(900,480, 20, 30);
+		
+
+		//Tubos relleno
+		g2d.setColor(new Color(126, 121, 201));
+		g2d.fillRect(600,440,120,50);
+		g2d.fillRect(610,490,100,120);
+		g2d.fillRect(1050,480,120,50);
+		g2d.fillRect(1060,530,100,80);
+		
+		//Lineas
+		g2d.setStroke(new BasicStroke(8));
+		g2d.setColor(new Color(67,66,128)); //Lineas 
+        g2d.drawLine(615, 493, 615, 610);
+        g2d.drawLine(610, 443, 610, 488);
+        g2d.drawLine(1060, 483, 1060, 528);
+        g2d.drawLine(1065, 533, 1065, 608);
+        
+        
+        g2d.setColor(new Color(104, 101, 176));
+        g2d.drawLine(623, 493, 623, 610);
+        g2d.drawLine(680, 493, 680, 610);
+        g2d.drawLine(620, 443, 620, 488);
+        g2d.drawLine(685, 443, 685, 488);
+        
+        g2d.drawLine(1068, 483, 1068, 528);
+        g2d.drawLine(1073, 533, 1073, 608);
+        g2d.drawLine(1125, 483, 1125, 528);
+        g2d.drawLine(1120, 533, 1120, 608);
+        
+        
+        
+        g2d.setColor(Color.white);
+        g2d.drawLine(639, 493, 639, 610);
+        g2d.drawLine(634, 443, 634, 488);
+        g2d.drawLine(1087, 483, 1087, 528);
+        g2d.drawLine(1092, 533, 1092, 608);
+        
+        g2d.setStroke(new BasicStroke(4));
+		g2d.setColor(new Color(67,66,128)); //Lineas
+        g2d.drawLine(686, 493, 686, 610);
+        g2d.fillRect(695, 493, 15, 120);
+        g2d.drawLine(690, 443, 690, 488);
+        g2d.fillRect(699, 443, 20, 50);
+        
+        g2d.drawLine(1130, 483, 1130, 528);
+        g2d.fillRect(1147, 483, 21, 48);
+        g2d.drawLine(1125, 533, 1125, 608);
+        g2d.fillRect(1140, 532, 23, 80);
+        
+
+        
+		//Tubos marco
+		g2d.setColor(Color.black);
+		g2d.drawRect(600,440,120,50);
+		g2d.drawRect(610,493,100,118);
+		g2d.drawRect(1050,480,120,50);
+		g2d.drawRect(1060,530,100,80);
+		
+		g2d.setFont(new Font("Super Mario 256", Font.PLAIN, 25));
+        g2d.setColor(new Color(144, 5, 5));
+        g2d.drawString("MARIO", 140, 75);
+        g2d.setColor(new Color(254, 205, 116));
+        g2d.drawString("TIME", 800, 75);
+        g2d.drawString("247", 808, 100);
+        g2d.setColor(Color.white);
+        g2d.drawString("x 5", 158, 100);
+        g2d.drawString("x", 410, 80);
+        g2d.drawString("0", 530, 80);
+        
+        g2d.drawString("x  0", 1023, 75);
+        g2d.drawString("2600", 1020, 100);
+        
+        g2d.setStroke(new BasicStroke(8));
+        g2d.setColor(Color.black);
+        g2d.drawRoundRect(570, 50, 60,60,20,20);
+        g2d.setStroke(new BasicStroke(6));
+        g2d.setColor(new Color(96, 170, 245));
+        g2d.drawRoundRect(570, 50, 60,60,20,20);
+        
+        
+        g2d.setColor(Color.red);
+        g2d.fillArc(580, 65, 40, 40, 0, 180);
+        g2d.setColor(Color.black);
+        g2d.setStroke(new BasicStroke(2));
+        g2d.drawArc(582, 79, 37,12, 0, -180);
+        g2d.setColor(Color.red);
+        g2d.fillArc(582, 79, 37,12, 0, -180);
+        g2d.setColor(new Color(255, 224, 131));
+        g2d.fillRoundRect(586, 79, 28,15, 20, 20);
+        
+        
+        g2d.setColor(Color.white); 
+        g2d.fillOval(595,67, 10,10);
+        g2d.fillArc(579, 70, 10, 10,240,200);
+        g2d.fillArc(611, 70, 10, 10,120,200);
+        
+        g2d.setColor(Color.black); 
+        g2d.setStroke(new BasicStroke(2));
+        g2d.drawArc(580, 65, 40, 40, 0, 180);
+        g2d.drawOval(595,67, 10,10);
+        g2d.drawArc(580, 70, 10, 10,238,200);
+        g2d.drawArc(610, 70, 10, 10,120,200);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 25));
+        g2d.drawString("' '", 593, 100);
+        
+        g2d.drawRoundRect(586, 79, 28,15, 20, 20);
+        
+        
+        
+        
+		
+		try {
+			BufferedImage image = ImageIO.read(new File("src/mario.png"));
+			g2d.drawImage(image, 460,468, null);
+			BufferedImage image2 = ImageIO.read(new File("src/estrella (1).png"));
+			g2d.drawImage(image2, 372,58, null);
+			BufferedImage image3 = ImageIO.read(new File("src/flor2.png"));
+			g2d.drawImage(image3, 613,333, null);
+			BufferedImage image4 = ImageIO.read(new File("src/moneda.png"));
+			g2d.drawImage(image4, 998,60, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+    
+		
+		
+        
+	}
+	
+/*	public void paint(Graphics g)
 	{
 		this.setTitle("Paint"); //
 		this.setSize(1200,800); 		  
@@ -727,6 +1056,8 @@ public class Ventana extends JFrame implements MouseListener{
 	{
 		JPanel login = new JPanel();
 		login.setSize(this.getWidth()/2, this.getHeight());
+	//	login.setSize(450,700);
+		login.setLocation(0,0);
 		login.setBackground(new Color(205, 217, 237));
 		login.setLayout(null);
 		
@@ -739,10 +1070,10 @@ public class Ventana extends JFrame implements MouseListener{
 		loginTitulo.setBackground(Color.blue);
 		login.add(loginTitulo);
 
-		JLabel logo = new JLabel();
+		/*JLabel logo = new JLabel();
 		logo.setIcon(new ImageIcon(getClass().getResource("abeja.png")));
 		logo.setBounds(100,50,256,256);
-		login.add(logo); 
+		login.add(logo); */
 		
 		JLabel nuevaCuenta = new JLabel ("¿No tienes cuenta? Registrate");
 		nuevaCuenta.setFont(new Font("Consolas", Font.BOLD, 12));
@@ -794,6 +1125,45 @@ public class Ventana extends JFrame implements MouseListener{
         loginAcceder.setBounds(150, 420, 150, 50);
         login.add(loginAcceder);
         
+        loginAcceder.addActionListener(new ActionListener()
+		{
+        	public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("hola");
+				
+				String usr = nombreUsuario.getText();
+				String pwd = new String (contraseñaUsuario.getPassword());
+				
+				
+				if (usr.length()<=0)
+				{
+					nombreUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				} else {
+					nombreUsuario.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+				if(pwd.length()<=0) {
+					contraseñaUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				} else
+				{
+					contraseñaUsuario.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+			//	System.out.println();
+				
+				if (usr.equals("SuperUser"))
+				{
+					//System.out.println(pwd);
+					if(pwd.equals("SuperPass")) {
+						System.out.println("Bienvenido");
+					}
+				} else
+				{
+					
+					System.out.println("Usuario no encontrado");
+				//	nombreUsuario.setBorderPainted(true); //Agregar borde
+					nombreUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+					contraseñaUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				}
+			}});      
         this.add(login);
 		
 	}
@@ -803,6 +1173,7 @@ public class Ventana extends JFrame implements MouseListener{
 
         //PANEL DERECHO
 		JPanel registro = new JPanel(); // Agregar otro panel
+	//	this.setSize(450,750);
 		registro.setSize(this.getWidth()/2, this.getHeight());
 		registro.setLocation(450,0);
 		registro.setBackground(new Color(163, 185, 220));
@@ -927,6 +1298,35 @@ public class Ventana extends JFrame implements MouseListener{
         registroAceptar.setBorder(BorderFactory.createLineBorder(new Color(8, 36, 81), 5));
         registro.add(registroAceptar);
         
+        registroAceptar.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String usr = registroUsuario.getText();
+				String bio = bio_text.getText();
+				if (usr.length()<=0)
+				{
+					registroUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				} else {
+					registroUsuario.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+				if(bio.length()<=0) {
+					bio_text.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				} else
+				{
+					bio_text.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+				if(!aceptarTerminos.isSelected()) {
+					aceptarTerminos.setBorderPainted(true);
+					aceptarTerminos.setBorder(BorderFactory.createLineBorder(Color.red,3));
+				}
+				else {
+					aceptarTerminos.setBorderPainted(true);
+					aceptarTerminos.setBorder(BorderFactory.createLineBorder(Color.green,3));
+				}
+			}});
+        
         this.add(registro);
 	}
 	
@@ -1042,7 +1442,50 @@ public class Ventana extends JFrame implements MouseListener{
 		fondoAzul.setOpaque(true);
 		fondoAzul.setLocation(100,80); 
 		login.add(fondoAzul);
+		
+		loginAcceder.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("hola");
+				
+				String usr = nombreUsuario.getText();
+				String pwd = new String (contraseñaUsuario.getPassword());
+				
+				
+				if (usr.length()<=0)
+				{
+					nombreUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				} else {
+					nombreUsuario.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+				if(pwd.length()<=0) {
+					contraseñaUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				} else
+				{
+					contraseñaUsuario.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+			//	System.out.println();
+				
+				if (usr.equals("SuperUser"))
+				{
+					//System.out.println(pwd);
+					if(pwd.equals("SuperPass")) {
+						System.out.println("Bienvenido");
+					}
+				} else
+				{
+					
+					System.out.println("Usuario no encontrado");
+				//	nombreUsuario.setBorderPainted(true); //Agregar borde
+					nombreUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+					contraseñaUsuario.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				}
+			}});
         
+
+			
         this.add(login);
 		
 	}
@@ -1367,38 +1810,6 @@ public class Ventana extends JFrame implements MouseListener{
 			vacioJ.setBackground(new Color(255, 113, 141));
 			vacioJ.setOpaque(true);
 		    panel6.add(vacioJ);
-		
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println(e.getX());
-		System.out.println(e.getY());
-		System.out.println();
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	
