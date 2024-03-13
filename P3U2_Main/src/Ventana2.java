@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
@@ -20,8 +22,9 @@ import javax.swing.JTextArea;
 import java.awt.Dimension;
 import javax.swing.JTextField;
 
-public class Ventana2 extends JFrame {
+public class Ventana2 extends JFrame implements MouseListener {
 	
+	JPanel panel = new JPanel();
 	public Ventana2() {
 		// TODO Auto-generated constructor stub
 		
@@ -35,6 +38,7 @@ public class Ventana2 extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.iniciarComponentes();
         this.setVisible(true); 
+        addMouseListener(this);
 	}
 	
 	public void iniciarComponentes()
@@ -325,7 +329,7 @@ public class Ventana2 extends JFrame {
 	public void botones() // Boton con eventos - 14/02/24
 	{
 		this.setSize(500,750);
-		JPanel panel = new JPanel();
+	//	JPanel panel = new JPanel();
 		panel.setSize(this.getWidth(), this.getHeight());
 		panel.setLocation(0,0);
 		panel.setBackground(new Color(123, 203, 204));
@@ -343,7 +347,8 @@ public class Ventana2 extends JFrame {
         {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				// TODO Auto-generated method stub
 				int x=(int)Math.floor(Math.random()*450+1);
 				int y=(int)Math.floor(Math.random()*650+1);
@@ -380,13 +385,56 @@ public class Ventana2 extends JFrame {
 					}
 			 
 				 });
-				
-				
 			}
-        	
-			
         });
 		
 		add(panel);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		int w = (int) Math.floor(Math.random() * 100 + 30);
+	    int h = (int) Math.floor(Math.random() * 100 + 10); 
+
+		saySomething(" " + e.getClickCount(),e, w,h);
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	void saySomething(String eventDescription, MouseEvent e, int w, int h) {
+		int r=(int)Math.floor(Math.random()*255+1); //RGB
+		int g=(int)Math.floor(Math.random()*255+1);
+		int b=(int)Math.floor(Math.random()*255+1);
+		JButton otroBoton = new JButton( r+","+g+","+b);
+		otroBoton.setOpaque(true);
+		otroBoton.setBackground(new Color (r,g,b));
+		otroBoton.setFocusable(false);
+		otroBoton.setBounds(e.getX()-50, e.getY()-50, w, h); 
+		panel.add(otroBoton);
+	    getContentPane().repaint();
+	    getContentPane().revalidate();
 	}
 }
