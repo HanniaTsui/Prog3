@@ -12,6 +12,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -367,8 +368,23 @@ public class Ventana2 extends JFrame {
 				
 				getContentPane().repaint();
 				getContentPane().revalidate();
+				
+				 otroBoton.addActionListener(new ActionListener()
+				 {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						JOptionPane.showMessageDialog(null, r+","+g+","+b,
+					             "Colores", JOptionPane.WARNING_MESSAGE);
+					}
+			 
+				 });
+				
+				
 			}
         	
+			
         });
 		
 		add(panel);
