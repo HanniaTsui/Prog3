@@ -49,12 +49,12 @@ public class Ventana extends JFrame {
 	//	this.setSize(900,760);
 	//	this.setSize(450,590);
 	//	this.setSize(1200,800); 
-		this.setSize(900,560); 
+		this.setSize(900,740); //Login y Registro
 		this.setLocationRelativeTo(null);
 	//	this.setMaximumSize(new Dimension (800,800));
 	//	this.setMinimumSize(new Dimension (250,250));
 		//this.setResizable(false);
-	//	this.setLayout(null); //Quitar el molde
+		this.setLayout(null); //Quitar el molde
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.iniciarComponentes();
         this.setVisible(true); 
