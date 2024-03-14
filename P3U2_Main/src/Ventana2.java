@@ -479,7 +479,10 @@ public class Ventana2 extends JFrame implements MouseListener {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		int r=(int)Math.floor(Math.random()*255+1); //RGB
+		int g=(int)Math.floor(Math.random()*255+1);
+		int b=(int)Math.floor(Math.random()*255+1);
+		panel.setBackground(new Color(r,g,b)); //Cambiar el color del panel al entrar a la ventana
 	}
 
 	@Override
