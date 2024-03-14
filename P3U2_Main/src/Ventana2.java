@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
@@ -22,7 +24,7 @@ import javax.swing.JTextArea;
 import java.awt.Dimension;
 import javax.swing.JTextField;
 
-public class Ventana2 extends JFrame implements MouseListener {
+public class Ventana2 extends JFrame implements MouseListener, KeyListener {
 	
 	JPanel panel = new JPanel();
 	public Ventana2() {
@@ -39,6 +41,7 @@ public class Ventana2 extends JFrame implements MouseListener {
         this.iniciarComponentes();
         this.setVisible(true); 
         addMouseListener(this);
+        addKeyListener(this);
 	}
 	
 	public void iniciarComponentes()
@@ -515,5 +518,30 @@ public class Ventana2 extends JFrame implements MouseListener {
 			}
 	 
 		 });
+	}
+
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println(e.getKeyCode()+" "+e.getKeyChar()); //Escribir en codigo y el valor tecleado
+		if (e.getKeyCode() == KeyEvent.VK_8) {
+            panel.removeAll(); // Remover componentes del panel
+            getContentPane().repaint();
+            getContentPane().revalidate();
+        }
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
