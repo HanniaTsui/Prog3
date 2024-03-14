@@ -1,5 +1,6 @@
 // Unidad 3 - Eventos
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -531,13 +532,23 @@ public class Ventana2 extends JFrame implements MouseListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(e.getKeyCode()+" "+e.getKeyChar()); //Escribir en codigo y el valor tecleado
-		if (e.getKeyCode() == KeyEvent.VK_8) {
+		if (e.getKeyChar()=='8') {
             panel.removeAll(); // Remover componentes del panel
             getContentPane().repaint();
             getContentPane().revalidate();
         }
+		else if (e.getKeyChar() == 'w') {
+			Component[] elementos = panel.getComponents();
+	        for (int i = 0; i < elementos.length; i++)    {
+	        	if (elementos[i].getClass().toString().equals("class javax.swing.JButton")) {
+	        		JButton boton = (JButton) elementos[i];
+	                boton.setSize(boton.getWidth() + 10, boton.getHeight() + 10);
+	            }
+	        }
+	    }
 		
 	}
+	
 
 	@Override
 	public void keyReleased(KeyEvent e) {
