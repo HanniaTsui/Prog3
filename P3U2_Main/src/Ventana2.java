@@ -45,10 +45,11 @@ public class Ventana2 extends JFrame implements MouseListener {
 	{
 	//	this.login();
 	//	this.registro();
-		this.botones();
+	//	this.botones();
+		this.botonesV2();
 	}
 
-	public void login() //Login con Eventos  - 13/02/24
+	public void login() //Login con Eventos  - 13/03/24
 	{
 		JPanel login = new JPanel();
 		login.setSize(this.getWidth()/2, this.getHeight());
@@ -164,7 +165,7 @@ public class Ventana2 extends JFrame implements MouseListener {
 		
 	}
 	
-	public void registro() //Registro con eventos - 13/02/24
+	public void registro() //Registro con eventos - 13/03/24
 	{
 
         //PANEL DERECHO
@@ -326,7 +327,7 @@ public class Ventana2 extends JFrame implements MouseListener {
         this.add(registro);
 	}
 
-	public void botones() // Boton con eventos - 14/02/24
+	public void botones() // Boton con eventos - 13/03/24
 	{
 		this.setSize(500,750);
 	//	JPanel panel = new JPanel();
@@ -391,6 +392,69 @@ public class Ventana2 extends JFrame implements MouseListener {
 		add(panel);
 	}
 
+	public void botonesV2() // Boton con eventos - Eliminar boton - 14/03/24
+	{
+		this.setSize(500,750);
+	//	JPanel panel = new JPanel();
+		panel.setSize(this.getWidth(), this.getHeight());
+		panel.setLocation(0,0);
+		panel.setBackground(new Color(123, 203, 204));
+		panel.setLayout(null);
+		
+		JButton superBoton = new JButton("Haz click");
+		superBoton.setBackground(new Color (20, 72, 73));
+		superBoton.setFont(new Font("Consolas", Font.BOLD, 40));
+		superBoton.setForeground(Color.WHITE);
+		superBoton.setFocusable(false);
+		superBoton.setBounds(50, 530, 400, 70);
+		panel.add(superBoton);
+        
+        superBoton.addActionListener(new ActionListener()
+        {
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				// TODO Auto-generated method stub
+				int x=(int)Math.floor(Math.random()*450+1);
+				int y=(int)Math.floor(Math.random()*650+1);
+				
+				int w=(int)Math.floor(Math.random()*120+1);
+				int h=(int)Math.floor(Math.random()*120+1);
+				
+				int r=(int)Math.floor(Math.random()*255+1); //RGB
+				int g=(int)Math.floor(Math.random()*255+1);
+				int b=(int)Math.floor(Math.random()*255+1);
+				
+				JButton otroBoton = new JButton(r+","+g+","+b);
+				otroBoton.setBounds(x,y,w,h);
+				otroBoton.setOpaque(true);
+				otroBoton.setBackground(new Color (r,g,b));
+				otroBoton.setFocusable(false);
+				otroBoton.setBorderPainted(true);
+				otroBoton.setBorder(BorderFactory.createLineBorder(new Color(r,g,b),5));
+				panel.add(otroBoton);
+				
+				getContentPane().repaint();
+				getContentPane().revalidate();
+				
+				otroBoton.addActionListener(new ActionListener()
+				{
+					@Override
+					public void actionPerformed(ActionEvent e) { //Eliminar botones (Aquellos agregado con el boton hacer clic)
+						JButton yo = ((JButton) e.getSource());
+						panel.remove(yo);
+						getContentPane().repaint();
+						getContentPane().revalidate();
+					}
+			 
+				});
+			}
+        });
+		
+		add(panel);
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -399,7 +463,7 @@ public class Ventana2 extends JFrame implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		int w = (int) Math.floor(Math.random() * 100 + 30);
 	    int h = (int) Math.floor(Math.random() * 100 + 10); 
 
@@ -436,5 +500,17 @@ public class Ventana2 extends JFrame implements MouseListener {
 		panel.add(otroBoton);
 	    getContentPane().repaint();
 	    getContentPane().revalidate();
+	    
+	    otroBoton.addActionListener(new ActionListener()
+		 {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JOptionPane.showMessageDialog(null, r+","+g+","+b,
+			             "Colores", JOptionPane.WARNING_MESSAGE);
+			}
+	 
+		 });
 	}
 }
