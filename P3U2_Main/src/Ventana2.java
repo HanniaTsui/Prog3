@@ -532,21 +532,70 @@ public class Ventana2 extends JFrame implements MouseListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(e.getKeyCode()+" "+e.getKeyChar()); //Escribir en codigo y el valor tecleado
-		if (e.getKeyChar()=='8') {
+		if (e.getKeyCode()==8) {
             panel.removeAll(); // Remover componentes del panel
             getContentPane().repaint();
             getContentPane().revalidate();
         }
-		else if (e.getKeyChar() == 'w') {
+		else if (e.getKeyCode() == 84) { // t - Cambiar tamaño
 			Component[] elementos = panel.getComponents();
 	        for (int i = 0; i < elementos.length; i++)    {
 	        	if (elementos[i].getClass().toString().equals("class javax.swing.JButton")) {
 	        		JButton boton = (JButton) elementos[i];
 	                boton.setSize(boton.getWidth() + 10, boton.getHeight() + 10);
+	                
+	                getContentPane().repaint();
+	                getContentPane().revalidate();
 	            }
 	        }
 	    }
 		
+	    int movX = 0;
+	    int movY = 0;
+	    switch (e.getKeyCode()) {
+	        case 37: 
+	        case 65:	//a - Izquierda
+	        	movX = -10;
+	            break;
+	        case 39:
+	        case 68:	// d - derecha
+	        	movX = 10;
+	            break;
+	        case 38:
+	        case 87: // w - arriba
+	        	movY = -10;
+	            break;
+	        case 40:
+	        case 83:	// s - abajo
+	        	movY = 10;
+	            break;
+	        default:
+	            return;
+	    }
+
+	   Component[] elementos = panel.getComponents();
+        for (int i = 0; i < elementos.length; i++)    {
+        	if (elementos[i].getClass().toString().equals("class javax.swing.JButton")) {
+        		JButton boton = (JButton) elementos[i];
+        		int x2 = boton.getX() + movX;
+	            int y2 = boton.getY() + movY;
+	            //Para que los botones no salgan del panel
+	            if (x2 < 0) {
+	            	x2 = 0;
+	            } else if (x2 > panel.getWidth() - boton.getWidth()) {
+	            	x2 = panel.getWidth() - boton.getWidth();
+	            }
+	            if (y2 < 0) {
+	                y2 = 0;
+	            } else if (y2 > panel.getHeight() - boton.getHeight()) {
+	                y2 = panel.getHeight() - boton.getHeight();
+	            }
+	            boton.setLocation(x2, y2);
+	            getContentPane().repaint();
+                getContentPane().revalidate();
+            }
+        }
+        
 	}
 	
 
