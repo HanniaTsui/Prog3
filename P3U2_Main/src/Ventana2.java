@@ -585,6 +585,7 @@ public class Ventana2 extends JFrame implements MouseListener, KeyListener {
 	            } else if (x2 > panel.getWidth() - boton.getWidth()) {
 	            	x2 = panel.getWidth() - boton.getWidth();
 	            }
+	            
 	            if (y2 < 0) {
 	                y2 = 0;
 	            } else if (y2 > panel.getHeight() - boton.getHeight()) {
