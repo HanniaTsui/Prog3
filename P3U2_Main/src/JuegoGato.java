@@ -12,6 +12,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Component;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.CompoundBorder;
 
 public class JuegoGato extends JFrame {
 
@@ -59,7 +66,7 @@ public class JuegoGato extends JFrame {
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		panel = new JPanel();
-		panel.setBorder(new EmptyBorder(3, 3, 3, 3));
+		panel.setBorder(new CompoundBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 3), "hola", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), null));
 		panel.setBackground(new Color(192, 192, 192));
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(3, 3, 0, 0));
@@ -163,35 +170,28 @@ public class JuegoGato extends JFrame {
 		panel.add(btnNewButton); panel.add(btnNewButton_3); panel.add(btnNewButton_1); 
 		panel.add(btnNewButton_2); panel.add(btnNewButton_4); panel.add(btnNewButton_5);
 		panel.add(btnNewButton_6); panel.add(btnNewButton_7); panel.add(btnNewButton_8);
+		
+
 	}
 	
 	public void click(JButton btn)
 	{
-		btn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JButton btn=((JButton) e.getSource());
-				//1-. si el boton esta libre
-				if(btn.getText().equals("")){
-					//2 turno
-					if(turno) {
-						btn.setText("O");
-						btn.setBackground(new Color(245, 149, 129));
-						turno=false;
-						verificarGanador();
-					}else {
-						btn.setText("X");
-						btn.setBackground(new Color(129, 231, 245));
-						turno=true;
-						verificarGanador();
-					}
-				}
-				
+		if(btn.getText().equals(""))
+		{
+			//2 turno
+			if(turno) {
+				btn.setText("O");
+				btn.setBackground(new Color(245, 149, 129));
+				turno=false;
+				verificarGanador();
+			} else {
+				btn.setText("X");
+				btn.setBackground(new Color(129, 231, 245));
+				turno=true;
+				verificarGanador();
 			}
+		}
 			
-		});
 	}
 	
 	public void verificarGanador() {
@@ -291,7 +291,6 @@ public class JuegoGato extends JFrame {
 		btnNewButton_8.setEnabled(false);
 	}
 	
-		    
-
+    
 
 }
