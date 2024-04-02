@@ -130,6 +130,7 @@ public class JuegoGato extends JFrame {
 				verificarGanador();
 			} else {
 				btn.setText("X");
+				btn.setFont(new Font("Arial", Font.PLAIN,4 ));
 		//		btn.setText("O");
 				JLabel logo = new JLabel();
 				logo.setIcon(new ImageIcon(getClass().getResource("x.png")));
@@ -204,9 +205,8 @@ public class JuegoGato extends JFrame {
 
 	public void contadores()
 	{
-		lblNewLabel = new JLabel("X: "+victoriasX);
-		
-		lblNewLabel_1 = new JLabel("O: "+victoriasO);
+		lblNewLabel.setText("X: " + victoriasX);
+	    lblNewLabel_1.setText("O: " + victoriasO);
 	}
     
 
