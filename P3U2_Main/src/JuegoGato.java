@@ -53,18 +53,22 @@ public class JuegoGato extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(219, 209, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		 
 		panel = new JPanel();
+		panel.setBackground(new Color(219, 209, 235));
 		contentPane.add(panel, BorderLayout.NORTH);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		lblNewLabel = new JLabel("X: "+victoriasX);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel("O: "+victoriasO);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel_1);
 		 
@@ -72,7 +76,7 @@ public class JuegoGato extends JFrame {
 		
 		_botones = new JPanel();
 		_botones.setBackground(new Color(192, 192, 192));
-		contentPane.add(_botones);
+		contentPane.add(_botones, BorderLayout.CENTER);
 		_botones.setLayout(new GridLayout(3, 3, 0, 0));
 		
 		botones = new JButton[9];
@@ -98,10 +102,12 @@ public class JuegoGato extends JFrame {
 		
 	
 		 panel_1 = new JPanel();
+		 panel_1.setBackground(new Color(219, 209, 235));
 		 contentPane.add(panel_1, BorderLayout.SOUTH);
 		 
 		 btnNewButton_9 = new JButton("Reiniciar");
 		 btnNewButton_9.setFocusable(false);
+		 btnNewButton_9.setBackground(new Color(143, 113, 193));
 		 btnNewButton_9.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -111,8 +117,6 @@ public class JuegoGato extends JFrame {
 		 });
 		 
 		 panel_1.add(btnNewButton_9);
-		
-
 	}
 	
 	public void click(JButton btn)
@@ -121,8 +125,9 @@ public class JuegoGato extends JFrame {
 		{
 			//2 turno
 			if(turno) {
-				btn.setText("        O");
-				JLabel logo = new JLabel();
+				btn.setText("O");
+				btn.setFont(new Font("Arial", Font.PLAIN,1 ));
+				JLabel logo = new JLabel();	
 				logo.setIcon(new ImageIcon(getClass().getResource("o.png")));
 				btn.add(logo);
 				btn.setBackground(new Color(245, 149, 129));
@@ -130,8 +135,7 @@ public class JuegoGato extends JFrame {
 				verificarGanador();
 			} else {
 				btn.setText("X");
-				btn.setFont(new Font("Arial", Font.PLAIN,4 ));
-		//		btn.setText("O");
+				btn.setFont(new Font("Arial", Font.PLAIN,1 ));
 				JLabel logo = new JLabel();
 				logo.setIcon(new ImageIcon(getClass().getResource("x.png")));
 				btn.add(logo);
@@ -177,23 +181,12 @@ public class JuegoGato extends JFrame {
 	        }
 	    }
 
-	   // Verificar si todos los botones están llenos (empate)
-	    boolean tableroLleno = true;
-	   for (JButton boton : botones) {
-	        if (boton.getText().isEmpty()) {
-	            tableroLleno = false;
-	            break;
-	        }
-	    }
-	    if (tableroLleno) {
-	        JOptionPane.showMessageDialog(this, "¡Empate!");
-	        reiniciarJuego(); 
-	    }
 	}
 	
 	public void reiniciarJuego()
 	{
-		for(JButton boton : botones) {
+		for (int i = 0; i < botones.length; i++) {
+		    JButton boton = botones[i];
 			boton.setText("");
 			boton.setBackground(null);
 			boton.removeAll();
