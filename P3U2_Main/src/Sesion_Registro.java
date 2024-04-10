@@ -74,7 +74,8 @@ public class Sesion_Registro extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 	//	this.login();
-		this.registro();
+	//	this.registro();
+		this.recuperarCuenta();
 	//	menu();
 		
 	
@@ -121,6 +122,16 @@ public class Sesion_Registro extends JFrame {
 		mnNewMenu_1.add(item2);
 		
 		JMenuItem item3 = new JMenuItem("Recuperar cuenta");
+		item3.addActionListener(new ActionListener()
+		{
+			
+        	public void actionPerformed(ActionEvent e) {
+        		contentPane.removeAll();
+		        contentPane.revalidate();
+		        contentPane.repaint();
+		        recuperarCuenta();
+        	}
+        });
 		mnNewMenu_1.add(item3);
 		
 		JMenu mnNewMenu = new JMenu("Usuarios");
@@ -501,5 +512,27 @@ public class Sesion_Registro extends JFrame {
 		        login();
 			}
 		});
+	}
+
+	public void recuperarCuenta()
+	{
+		menu();
+		setTitle("Recuperar cuenta");
+		JPanel panelLogin = new JPanel();
+		panelLogin.setFocusable(false);
+		panelLogin.setBackground(new Color(255, 179, 142));
+		panelLogin.setLayout(null);
+		panelLogin.setBorder(new LineBorder(new Color(191, 63, 0), 10));
+		contentPane.add(panelLogin, BorderLayout.CENTER);
+		
+		
+		JLabel titulo = new JLabel("RECUPERACIÓN DE CUENTA");
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		titulo.setHorizontalTextPosition(SwingConstants.CENTER);
+		titulo.setBorder(null);
+		titulo.setForeground(new Color(0, 0, 0));
+		titulo.setFont(new Font("Arial Black", Font.BOLD, 16));
+		titulo.setBounds(87,31,265,45);
+		panelLogin.add(titulo);
 	}
 }
