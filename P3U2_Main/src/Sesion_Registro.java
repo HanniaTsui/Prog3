@@ -63,7 +63,7 @@ public class Sesion_Registro extends JFrame {
 	 */
 	public Sesion_Registro() {
 		//setResizable(false);
-		setTitle("Ventana");
+	//	setTitle("Ventana");
 		setSize(450,650);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,10 +73,16 @@ public class Sesion_Registro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
+	//	this.login();
+		this.registro();
+	//	menu();
 		
-		// LOGIN
-		/*JPanel panel = new JPanel();
-		panel.setSize(new Dimension(450, 50));
+	
+	}
+	
+	public void menu() {
+		JPanel panel = new JPanel();
+		panel.setSize(new Dimension(450, 15));
 		contentPane.add(panel, BorderLayout.NORTH);
 		//panel.setLayout(null);
 		panel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -85,24 +91,70 @@ public class Sesion_Registro extends JFrame {
 		menuBar_1.setBounds(0, 0, 240, 22);
 		panel.add(menuBar_1);
 		
-		JMenu mnNewMenu_1 = new JMenu("Inicio");
+		JMenu mnNewMenu_1 = new JMenu("Cuenta");
 		menuBar_1.add(mnNewMenu_1);
 		
-		JMenu mnNewMenu_2 = new JMenu("Login");
-		menuBar_1.add(mnNewMenu_2);
+		JMenuItem item1 = new JMenuItem("Iniciar Sesión");
+		item1.addActionListener(new ActionListener()
+		{
+			
+        	public void actionPerformed(ActionEvent e) {
+        		contentPane.removeAll();
+		        contentPane.revalidate();
+		        contentPane.repaint();
+		        login();
+        	}
+        });
+		mnNewMenu_1.add(item1);
 		
-		JMenu mnNewMenu_3 = new JMenu("Registro");
-		menuBar_1.add(mnNewMenu_3);
+		JMenuItem item2 = new JMenuItem("Registrarse");
+		item2.addActionListener(new ActionListener()
+		{
+			
+        	public void actionPerformed(ActionEvent e) {
+        		contentPane.removeAll();
+		        contentPane.revalidate();
+		        contentPane.repaint();
+		        registro();
+        	}
+        });
+		mnNewMenu_1.add(item2);
 		
-		JMenu mnNewMenu_4 = new JMenu("Carga");
-		mnNewMenu_4.setEnabled(false);
-		menuBar_1.add(mnNewMenu_4);
+		JMenuItem item3 = new JMenuItem("Recuperar cuenta");
+		mnNewMenu_1.add(item3);
 		
-		JMenu mnNewMenu_5 = new JMenu("Ayuda");
-		mnNewMenu_5.setEnabled(false);
-		menuBar_1.add(mnNewMenu_5);
+		JMenu mnNewMenu = new JMenu("Usuarios");
+		menuBar_1.add(mnNewMenu);
+		
+		JMenuItem item4 = new JMenuItem("Alta");
+		mnNewMenu.add(item4);
+		
+		JMenuItem item5 = new JMenuItem("Baja");
+		mnNewMenu.add(item5);
+		
+		JMenuItem item6 = new JMenuItem("Consultar");
+		mnNewMenu.add(item6);
+		
+		JMenu mnNewMenu_6 = new JMenu("Ayuda");
+		menuBar_1.add(mnNewMenu_6);
+		
+		JMenuItem item7 = new JMenuItem("¿Cómo crear un usuario?");
+		mnNewMenu_6.add(item7);
+		
+		JMenuItem item8 = new JMenuItem("¿Cómo acceder al sistema?");
+		mnNewMenu_6.add(item8);
+		
+		JMenuItem item9 = new JMenuItem("¿Qué pasa si olvide mi contraseña?");
+		mnNewMenu_6.add(item9);
 		
 		
+	}
+	
+	public void login()
+	{
+		// LOGIN
+		menu();
+		setTitle("Inicio de sesión");
 		JPanel panelLogin = new JPanel();
 		panelLogin.setFocusable(false);
 		panelLogin.setBackground(new Color(129, 192, 192));
@@ -166,7 +218,7 @@ public class Sesion_Registro extends JFrame {
 		boton.setBackground(new Color(0, 128, 128));
 		boton.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
 		boton.setBorder(new LineBorder(new Color(0, 189, 189), 5));
-		boton.setBounds(150, 500, 120, 30);
+		boton.setBounds(158, 500, 120, 30);
 		boton.setFocusable(false);
 		boton.addActionListener(new ActionListener()
 		{
@@ -231,6 +283,13 @@ public class Sesion_Registro extends JFrame {
 
 		botonRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				contentPane.removeAll();
+		        contentPane.revalidate();
+		        contentPane.repaint();
+		        
+		        // Mostrar el panel de registro
+		        registro();
 			//System.out.print("hola");
 			}
 		});
@@ -251,30 +310,13 @@ public class Sesion_Registro extends JFrame {
 		panelLogin.add(botonRegistro_1);
 		botonRegistro.setBounds(227, 72, 95, 21);
 		panelLogin.add(botonRegistro);
-		
-		*/
-		// Registrarse
-		
-		JPanel panel = new JPanel();
-		panel.setSize(new Dimension(450, 50));
-		contentPane.add(panel, BorderLayout.NORTH);
-		//panel.setLayout(null);
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		
-		JMenuBar menuBar_1 = new JMenuBar();
-		menuBar_1.setBounds(0, 0, 240, 22);
-		panel.add(menuBar_1);
-		
-		JMenu mnNewMenu_1 = new JMenu("Usuarios");
-		menuBar_1.add(mnNewMenu_1);
-		
-		JMenuItem item1 = new JMenuItem("Iniciar Sesión");
-		mnNewMenu_1.add(item1);
-		
-		JMenuItem item2 = new JMenuItem("Registrarse");
-		mnNewMenu_1.add(item2);
-		
-		
+			
+	}
+	
+	public void registro()
+	{
+		menu();
+		setTitle("Registro");
 		JPanel panelRegistro = new JPanel();
 		panelRegistro.setBackground(new Color(185, 185, 255));
 		panelRegistro.setSize(this.getWidth(), this.getHeight());
@@ -290,25 +332,25 @@ public class Sesion_Registro extends JFrame {
 		titulo.setForeground(new Color(0, 0, 0));
 		titulo.setFont(new Font("Arial Black", Font.BOLD, 16));
 		
-		titulo.setBounds(153,30,135,45);
+		titulo.setBounds(153,23,135,45);
 		panelRegistro.add(titulo);
 		
 		JLabel logo3 = new JLabel();
 		logo3.setIcon(new ImageIcon(getClass().getResource("usuarioReg.png")));
-		logo3.setBounds(118,41,24,24);
+		logo3.setBounds(118,34,24,24);
 		panelRegistro.add(logo3);
 		
 		
 		
 		JLabel labelNombre = new JLabel("Nombre(s)");
 		labelNombre.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		labelNombre.setBounds(100, 85, 80, 45);
+		labelNombre.setBounds(100, 67, 80, 45);
 		panelRegistro.add(labelNombre);
 		
 		
 		nombres = new JTextField();
 		nombres.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		nombres.setBounds(100, 122, 220, 30);
+		nombres.setBounds(100, 104, 220, 30);
         nombres.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 5, 0, 0)));
 		panelRegistro.add(nombres);
 		
@@ -317,12 +359,12 @@ public class Sesion_Registro extends JFrame {
 		
 		JLabel labelApellidos = new JLabel("Apellidos");
 		labelApellidos.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		labelApellidos.setBounds(100, 160, 80, 45);
+		labelApellidos.setBounds(100, 142, 80, 45);
 		panelRegistro.add(labelApellidos);
 		
 		apellidos = new JTextField();
 		apellidos.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		apellidos.setBounds(100, 197, 220, 30);
+		apellidos.setBounds(100, 179, 220, 30);
 		apellidos.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 5, 0, 0)));
 		panelRegistro.add(apellidos);
 		
@@ -331,12 +373,12 @@ public class Sesion_Registro extends JFrame {
 		
 		JLabel labelEmail = new JLabel("Correo Electrónico");
 		labelEmail.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		labelEmail.setBounds(100, 235, 220, 45);
+		labelEmail.setBounds(100, 217, 220, 45);
 		panelRegistro.add(labelEmail);
 		
 		email = new JTextField();
 		email.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		email.setBounds(100, 272, 220, 30);
+		email.setBounds(100, 254, 220, 30);
 		email.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 5, 0, 0)));
         
 		panelRegistro.add(email);
@@ -345,43 +387,43 @@ public class Sesion_Registro extends JFrame {
 		
 		JLabel labelPassword = new JLabel("Contraseña");
 		labelPassword.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		labelPassword.setBounds(100, 310, 100, 45);
+		labelPassword.setBounds(100, 292, 100, 45);
 		panelRegistro.add(labelPassword);
 		
 		
 		password = new JPasswordField();
 		password.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		password.setBounds(100, 347, 180, 30);
+		password.setBounds(100, 329, 180, 30);
 		password.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 5, 0, 0)));
 		panelRegistro.add(password);
 		
 		JLabel logo2 = new JLabel();
 		logo2.setIcon(new ImageIcon(getClass().getResource("ojo.png")));
-		logo2.setBounds(290,350,24,24);
+		logo2.setBounds(290,332,24,24);
 		panelRegistro.add(logo2); 
 		
 		///
 		
 		JLabel labelConfPassword = new JLabel("Confirmar Contraseña");
 		labelConfPassword.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		labelConfPassword.setBounds(100, 385, 180, 45);
+		labelConfPassword.setBounds(100, 367, 180, 45);
 		panelRegistro.add(labelConfPassword);
 		
 		confPassword = new JPasswordField();
 		confPassword.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		confPassword.setBounds(100, 422, 180, 30);
+		confPassword.setBounds(100, 404, 180, 30);
 		confPassword.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 5, 0, 0)));
 		panelRegistro.add(confPassword);
 		
 		JLabel logo = new JLabel();
 		logo.setIcon(new ImageIcon(getClass().getResource("ojo.png")));
-		logo.setBounds(290,425,24,24);
+		logo.setBounds(290,407,24,24);
 		panelRegistro.add(logo); 
 		
 		
 		terminos = new JCheckBox("Acepto términos y condiciones");
 		terminos.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 11));
-		terminos.setBounds(110, 462, 200, 45);
+		terminos.setBounds(110, 440, 200, 45);
 		terminos.setOpaque(false);
 		terminos.setFocusable(false);
 		terminos.setBackground(null);
@@ -409,13 +451,7 @@ public class Sesion_Registro extends JFrame {
 					password.setBorder(BorderFactory.createLineBorder(Color.red,5));
 					confPassword.setBorder(BorderFactory.createLineBorder(Color.red,5));
 					
-					if(!terminos.isSelected()) {
-						terminos.setBorderPainted(true);
-						terminos.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-						return;
-					} else {
-						 terminos.setBorder(null);
-					}
+					
 					if(pwd.length()<=0 || confpwd.length()<=0)
 						JOptionPane.showMessageDialog(null, "Por favor, complete ambos campos de contraseña", "Error", JOptionPane.WARNING_MESSAGE);
 					else
@@ -427,13 +463,43 @@ public class Sesion_Registro extends JFrame {
 					confPassword.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 5, 0, 0)));
 				}
 					
+				if(!terminos.isSelected()) {
+					terminos.setBorderPainted(true);
+					terminos.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+					return;
+				} else {
+					 terminos.setBorder(null);
+				}
 				
 				System.out.println("Registro exitoso");
 				JOptionPane.showMessageDialog(null, "Registro exitoso");
                 
 			}});      
 		
-		panelRegistro.add(boton);	
+		panelRegistro.add(boton);
 		
+		JButton btnCuenta = new JButton("<html><u>¿Ya tienes cuenta?</u></html>");
+		btnCuenta.setForeground(new Color(0, 0, 128));
+		btnCuenta.setBackground(new Color(185, 185, 255));
+		btnCuenta.setBorder(null);
+		btnCuenta.setBounds(120, 485, 179, 21);
+		panelRegistro.add(btnCuenta);
+		
+		
+		btnCuenta.setFont(new Font("Arial Rounded MT Bold", Font.ITALIC, 12));
+		btnCuenta.setFocusPainted(false);
+		btnCuenta.setFocusable(false);
+		
+		btnCuenta.setContentAreaFilled(false);
+
+		btnCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				contentPane.removeAll();
+		        contentPane.revalidate();
+		        contentPane.repaint();
+		        login();
+			}
+		});
 	}
 }
