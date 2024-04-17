@@ -16,7 +16,9 @@ import java.awt.Graphics;
 public class PantallaGraphics extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentPane,  panelDibujo;
+	int x= 200;
+    int y = 200;
 
 	/**
 	 * Launch the application.
@@ -26,7 +28,6 @@ public class PantallaGraphics extends JFrame implements KeyListener {
 			public void run() {
 				try {
 					PantallaGraphics frame = new PantallaGraphics();
-					frame.requestFocus();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,40 +52,38 @@ public class PantallaGraphics extends JFrame implements KeyListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panelDibujo = new JPanel() {
+		panelDibujo = new JPanel() {
             @Override
-            protected void paintComponent(Graphics g) {
+            public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setColor(Color.BLUE);
-                g.fillRect((getWidth() - 150) / 2,  (getHeight() - 80) / 2, 150, 80);
+                g.setColor(new Color(134,153,255));
+                g.fillRect(x,  y, 20, 20);
             }
         };
 		panelDibujo.setBounds(0, 0, 636, 550);
-		panelDibujo.setBackground(new Color(129, 192, 192));
+		panelDibujo.setBackground(Color.black);
 		panelDibujo.setLayout(null);
-		panelDibujo.setBorder(new LineBorder(new Color(64, 128, 128), 10));
+		panelDibujo.setBorder(new LineBorder(new Color(81, 81, 255), 10));
 		contentPane.add(panelDibujo);
 		
 		JPanel panelBoton = new JPanel();
 		panelBoton.setBounds(0, 550, 636, 63);
-		panelBoton.setBackground(new Color(185, 185, 255));
+		panelBoton.setBackground(new Color(81, 81, 255));
 		panelBoton.setLayout(null);
-		panelBoton.setBorder(BorderFactory.createLineBorder(new Color(81, 81, 255),10));
 		contentPane.add(panelBoton);
 		
 		JButton btnReiniciar = new JButton("Reiniciar");
-		btnReiniciar.setBounds(275, 21, 85, 21);
-		btnReiniciar.setForeground(new Color(255, 255, 255));
-		btnReiniciar.setBackground(new Color(0, 128, 192));
-		btnReiniciar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		btnReiniciar.setBounds((panelBoton.getWidth() - 100) / 2,  (panelBoton.getHeight()-30) / 2, 100, 25);
+		btnReiniciar.setForeground(new Color(0, 0, 0));
+		btnReiniciar.setBackground(new Color(197,255,246));
+		btnReiniciar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnReiniciar.setBorder(new LineBorder(new Color(0, 0, 128), 3));
 		btnReiniciar.setFocusable(false);
 		btnReiniciar.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-			
+				
 			}
 	
 		});
@@ -104,6 +103,28 @@ public class PantallaGraphics extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(e.getKeyCode()+" "+e.getKeyChar());
+		
+		 switch (e.getKeyCode()) {
+	        case 37: 
+	        case 65:	//a - Izquierda
+	        	x -= 10;
+	            break;
+	        case 39:
+	        case 68:	// d - derecha
+	        	x += 10;
+	            break;
+	        case 38:
+	        case 87: // w - arriba
+	        	y -=10;
+	            break;
+	        case 40:
+	        case 83:	// s - abajo
+	        	y += 10;
+	            break;
+	        default:
+	            return;
+	    }
+		 this.repaint();
 	}
 
 	@Override
