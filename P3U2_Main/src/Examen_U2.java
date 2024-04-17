@@ -32,6 +32,7 @@ public class Examen_U2 extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.iniciarComponentes();
         this.setVisible(true); 
+        
 	}
 	
 	public void iniciarComponentes()

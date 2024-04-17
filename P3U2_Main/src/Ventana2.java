@@ -47,8 +47,8 @@ public class Ventana2 extends JFrame implements MouseListener, KeyListener {
 	
 	public void iniciarComponentes()
 	{
-	//	this.login();
-		this.registro();
+		this.login();
+	//	this.registro();
 	//	this.botones();
 	//	this.botonesV2();
 	}

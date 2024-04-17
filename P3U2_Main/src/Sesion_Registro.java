@@ -228,7 +228,7 @@ public class Sesion_Registro extends JFrame {
 		
 		logo5 = new JLabel();
 		logo5.setIcon(new ImageIcon(getClass().getResource("usuarioInicio.png")));
-		logo5.setBounds(150,112,128,128);
+		logo5.setBounds(153,112,128,128);
 		panelLogin.add(logo5);
 		
 		labelUsuario = new JLabel("Usuario");
@@ -238,7 +238,7 @@ public class Sesion_Registro extends JFrame {
 		
 		nombres = new JTextField();
 		nombres.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		nombres.setBounds(85, 275, 250, 30);
+		nombres.setBounds(85, 275, 265, 30);
         nombres.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 5, 0, 0)));
 		panelLogin.add(nombres);	
 		
@@ -249,13 +249,13 @@ public class Sesion_Registro extends JFrame {
 		
 		password = new JPasswordField();
 		password.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 15));
-		password.setBounds(85, 341, 210, 30);
+		password.setBounds(85, 341, 225, 30);
 		password.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK), BorderFactory.createEmptyBorder(0, 5, 0, 0)));
 		panelLogin.add(password);
 		
 		logo2 = new JLabel();
 		logo2.setIcon(new ImageIcon(getClass().getResource("ojo.png")));
-		logo2.setBounds(303,346,24,24);
+		logo2.setBounds(318,346,24,24);
 		panelLogin.add(logo2); 
 		
 		JButton botonAcceder = new JButton("Acceder");
@@ -333,6 +333,8 @@ public class Sesion_Registro extends JFrame {
 		        registro();
 			}
 		});
+		botonRegistro.setBounds(227, 72, 95, 21);
+		panelLogin.add(botonRegistro);
 		
 		JButton botonOlvidaste = new JButton("<html><u>¿Olvidaste tu contraseña?</u></html>");
 		botonOlvidaste.addActionListener(new ActionListener() {
@@ -352,8 +354,7 @@ public class Sesion_Registro extends JFrame {
 		botonOlvidaste.setBackground(new Color(129, 192, 192));
 		botonOlvidaste.setBounds(135, 425, 165, 21);
 		panelLogin.add(botonOlvidaste);
-		botonRegistro.setBounds(227, 72, 95, 21);
-		panelLogin.add(botonRegistro);
+		
 			
 	}
 	
