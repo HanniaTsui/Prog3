@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,9 +19,14 @@ public class PantallaGraphics extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane,  panelDibujo;
-	int x= 200;
-    int y = 200;
-
+	int x= 308;
+    int y = 265;
+    Jugador j1 = new Jugador(x,y,20,20, "#8699FF");
+	boolean mov=true;
+    Random rand = new Random();
+    int obsX = rand.nextInt(600); // Genera un número aleatorio entre 0 y 599
+    int obsY = rand.nextInt(500); // Genera un número aleatorio entre 0 y 499
+    Jugador obs = new Jugador(obsX,obsY,30,30, "#FF0000");
 	/**
 	 * Launch the application.
 	 */
@@ -56,14 +63,19 @@ public class PantallaGraphics extends JFrame implements KeyListener {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setColor(new Color(134,153,255));
-                g.fillRect(x,  y, 20, 20);
+              //  g.setColor(new Color(134,153,255));
+              //  g.fillRect(x,  y, 20, 20);
+                g.setColor(Color.decode(j1.getColor()));
+                g.fillRect(j1.getX(), j1.getY(), j1.getW(), j1.getH());
+                
+                g.setColor(Color.decode(obs.getColor()));
+                g.fillRect(obs.getX(), obs.getY(), obs.getW(), obs.getH());
             }
         };
 		panelDibujo.setBounds(0, 0, 636, 550);
 		panelDibujo.setBackground(Color.black);
 		panelDibujo.setLayout(null);
-		panelDibujo.setBorder(new LineBorder(new Color(81, 81, 255), 10));
+		panelDibujo.setBorder(new LineBorder(new Color(81, 81, 255), 8));
 		contentPane.add(panelDibujo);
 		
 		JPanel panelBoton = new JPanel();
@@ -83,7 +95,11 @@ public class PantallaGraphics extends JFrame implements KeyListener {
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				j1.setX(308);
+				j1.setY(265);
+				obs.setX(rand.nextInt(500));
+				obs.setY(rand.nextInt(500));
+				repaint();
 			}
 	
 		});
@@ -103,28 +119,60 @@ public class PantallaGraphics extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(e.getKeyCode()+" "+e.getKeyChar());
-		
+
 		 switch (e.getKeyCode()) {
 	        case 37: 
 	        case 65:	//a - Izquierda
-	        	x -= 10;
+	        	if(j1.getX() <=8) {
+	        		mov=false;
+	        		System.out.println("Colision");
+	        	}
+	        	else {
+	        		
+	        		j1.setX(j1.getX()-10);
+	        	}
 	            break;
 	        case 39:
 	        case 68:	// d - derecha
-	        	x += 10;
+	        	if(j1.getX() >= 600) {
+	        		mov=false;
+	        		System.out.println("Colision");
+	        	}
+	        	else 
+	        		j1.setX(j1.getX()+10);
 	            break;
 	        case 38:
 	        case 87: // w - arriba
-	        	y -=10;
+	        	if(j1.getY() <= 14) {
+	        		mov=false;
+	        		System.out.println("Colision");
+	        	}
+	        	else 
+	        		j1.setY(j1.getY()-10);
+	        		
 	            break;
 	        case 40:
 	        case 83:	// s - abajo
-	        	y += 10;
+	        	if(j1.getY() >= 519) {
+	        		mov=false;
+	        		System.out.println("Colision");
+	        	}
+	        	else 
+	        		j1.setY(j1.getY()+10);
 	            break;
 	        default:
 	            return;
 	    }
-		 this.repaint();
+
+		if(j1.getX() + j1.getW() >= obs.getX() && 
+		   j1.getX() <= obs.getX()+ obs.getW()  &&
+	       j1.getY() + j1.getH() >= obs.getY() &&
+	       j1.getY() <= obs.getY() + obs.getH())
+		{
+			System.out.println("Colision");
+		}
+					 
+		this.repaint();
 	}
 
 	@Override
@@ -132,4 +180,7 @@ public class PantallaGraphics extends JFrame implements KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	
 }
