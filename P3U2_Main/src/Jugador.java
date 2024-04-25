@@ -1,4 +1,4 @@
-import java.awt.Point;
+import java.awt.Color;
 
 public class Jugador {
 
@@ -6,10 +6,10 @@ public class Jugador {
     private int y;
     private int w;
     private int h;
+    boolean mov = true;
    // private Color color= new Color(134,153,255);
 
-    
-    private String color;
+    private String color; 
     public Jugador(int x, int y, int w, int h, String color) {
         this.x=x;
         this.y=y;
@@ -18,9 +18,10 @@ public class Jugador {
         this.color=color; 
     }
 
-   
+    
+
 	public int getX() {
-		return x; 
+		return x;
 	}
 
 
@@ -76,14 +77,5 @@ public class Jugador {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	public int getCenterX() {
-	    return x + w / 2;  
-	}
-
-	public int getCenterY() {
-	    return y + h / 2;
-	}
-	
 	
 }

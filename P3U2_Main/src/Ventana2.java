@@ -605,4 +605,6 @@ public class Ventana2 extends JFrame implements MouseListener, KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 }

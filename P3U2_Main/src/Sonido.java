@@ -21,7 +21,7 @@ public class Sonido {
         try {
             audioStream = AudioSystem.getAudioInputStream(audio);
         }
-        catch (UnsupportedAudioFileException | IOException e) { 
+        catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
 
@@ -115,7 +115,6 @@ public class Sonido {
             public void actionPerformed(ActionEvent e) {
                 if (botonSonido.isSelected()) {
                 	reanudarBucle();
-                	
 
                 } else {
                 	pause();
