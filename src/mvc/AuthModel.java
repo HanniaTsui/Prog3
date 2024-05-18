@@ -16,7 +16,16 @@ public class AuthModel {
 	}
 	
 	public boolean login (String username, String password) {
-		String usr = username;
+		
+		Usuario user = BaseDatos.obtenerIstancia().user(username,password); //USANDO BASE DE DATOS
+		if(user.getNombre().equals(username) && user.getPassword().equals(password)) {
+			JOptionPane.showMessageDialog(null, "Bienvenido");
+            return true;
+		}else {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+		
+	/*	String usr = username;
 		String pwd = password;
 		try {
             FileReader reader=new FileReader("datos.json");
@@ -36,11 +45,13 @@ public class AuthModel {
             ex.printStackTrace();
         } catch (JSONException ex) {
             ex.printStackTrace();
-        }
+        }*/
 		/*if (username.equals("admin") && password.equals("123")) {
 			return true; 
 		}
 		return false; */
+		
+		
 		return false; 
 	}
 
